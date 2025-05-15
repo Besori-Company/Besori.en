@@ -47,8 +47,8 @@
                 <img class="ico_azul" src="img/trazo.webp" alt="icono">
                 Products
             </h2>
-            <div class="producto_contenido">
-                <img class="icono" src="img/Ico_Collection.webp" alt="Icono Collection">
+            <div class="producto_contenido image-container">
+                <img class="icono  image-3d reset" src="img/Ico_Collection.webp" alt="Icono Collection">
                 <span>Collection (In development)</span>
             </div>
         </section>
@@ -124,6 +124,17 @@
     </footer>
 
     <script>
+        const img = document.getElementById('image');
+
+        img.addEventListener('mouseenter', () => {
+          img.classList.remove('reset');
+        });
+
+        img.addEventListener('mouseleave', () => {
+          img.classList.add('reset');
+        });
+
+
         if (window.location.hash) window.location.hash = '';
         window.scrollTo(0, 0);
     </script>

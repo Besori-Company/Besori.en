@@ -136,6 +136,22 @@ section {
     border-radius: 1rem;
 }
 
+.image-container {
+  perspective: 1200px;
+}
+.image-3d {
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+}
+
+.image-3d.reset {
+  transform: rotateY(720deg) scale(1);
+}
+
+.image-container:hover .image-3d {
+  transform: rotateY(1080deg) scale(1.1);
+}
+
 .producto {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
