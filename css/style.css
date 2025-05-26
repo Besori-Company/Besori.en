@@ -152,6 +152,10 @@ section {
   transform: rotateY(1080deg) scale(1.1);
 }
 
+.image-container:hover {
+    transform: scale(1.05);
+}
+
 .producto {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
