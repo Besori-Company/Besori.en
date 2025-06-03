@@ -11,6 +11,29 @@ html {
     background-color: var(--gris);
     color: var(--negro);
     scroll-behavior: smooth;
+    --x: 50%;
+    --y: 50%;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: var(--circle-y, 50%);
+  left: var(--circle-x, 50%);
+  width: 300vmax;
+  height: 300vmax;
+  transform: translate(-50%, -50%) scale(0);
+  background-color: rgba(202, 224, 217, 100);
+  border-radius: 50%;
+  opacity: 0;
+  transition: transform 1s ease, opacity 0.6s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+html.hover-bg::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
 }
 
 *, *::after, *::before {
@@ -168,6 +191,7 @@ section {
     padding-bottom: 4rem;
     justify-content: center;
 }
+
 
 .nosotros {
     display: flex;
