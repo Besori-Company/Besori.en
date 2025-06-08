@@ -264,21 +264,15 @@ section {
   display: block;
 }
 
-.redes_izq {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
-    text-align: left;
-    align-items: center;
+.redes_izq,
+.redes_der {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem;
 }
 
-.redes_der {
-    display: flex;
-    flex-direction: row;
-    margin: 1rem;
-    text-align: right;
-    align-items: center;
-}
 
 .redes_contenido a {
     text-decoration: none;
@@ -293,6 +287,13 @@ section {
 .redes_contenido a:hover {
     color: var(--azul);
 }
+
+.img-escritorio {
+  max-width: 32rem;
+  max-height: 17rem;
+  flex-shrink: 0;
+}
+
 
 .img-movil {
     display: none;
@@ -435,6 +436,11 @@ section {
         height: 25%;
         margin: 3%;
         border-radius: 20%;
+    }
+
+    .redes_izq,
+    .redes_der {
+        gap: 1rem;
     }
 
     .img-escritorio {
