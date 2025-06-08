@@ -3,6 +3,7 @@
     --gris: #e4efee;
     --negro: #000000;
     --negro_claro: #676767;
+    --azul: #3577b1;
 }
 
 html {
@@ -26,7 +27,7 @@ html::before {
   background-color: rgba(202, 224, 217, 100);
   border-radius: 50%;
   opacity: 0;
-  transition: transform 1s ease, opacity 0.6s ease;
+  transition: transform 1.3s ease, opacity 0.6s ease;
   z-index: -1;
   pointer-events: none;
 }
@@ -263,7 +264,7 @@ section {
   display: block;
 }
 
-.github {
+.redes_izq {
     display: flex;
     flex-direction: row;
     margin: 1rem;
@@ -271,7 +272,7 @@ section {
     align-items: center;
 }
 
-.instagram {
+.redes_der {
     display: flex;
     flex-direction: row;
     margin: 1rem;
@@ -290,7 +291,7 @@ section {
 }
 
 .redes_contenido a:hover {
-    color: #3577b1;
+    color: var(--azul);
 }
 
 .img-movil {
