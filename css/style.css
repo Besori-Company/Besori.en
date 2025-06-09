@@ -449,6 +449,9 @@ section {
     
     .img-movil {
         display: block;
+        flex-shrink: 0;
+        max-width: 9rem;
+        aspect-ratio: 1 / 1;
     }
     
 }
