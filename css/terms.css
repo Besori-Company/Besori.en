@@ -1,0 +1,42 @@
+
+.terms {
+    padding: 6rem;
+}
+
+.terms_section {
+    height: auto;
+    border-bottom-right-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    padding: 6rem;
+}
+
+ul li {
+  margin-bottom: 1rem;
+}
+
+ol > li > strong {
+  display: block;
+  margin-bottom: 1.2rem;
+  margin-top: 5rem;
+  font-weight: bold;
+}
+
+ol li::marker {
+  font-weight: bold;
+}
+
+.terms a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 750px) {
+  .terms_section,
+  .terms {
+    padding: 3rem;
+  }
+
+  .titulo {
+    font-size: 3rem;
+  }
+}
