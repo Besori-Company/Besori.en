@@ -3,6 +3,10 @@
     padding: 6rem;
 }
 
+.text {
+  font-size: 2.2rem;
+}
+
 .terms_section {
     height: auto;
     border-bottom-right-radius: 2rem;
@@ -33,10 +37,15 @@ ol li::marker {
 @media (max-width: 750px) {
   .terms_section,
   .terms {
-    padding: 3rem;
+    padding: 1rem;
+    padding-right: 4rem;
   }
 
   .titulo {
     font-size: 3rem;
+  }
+
+  .text {
+  font-size: 1.7rem;
   }
 }
