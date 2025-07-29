@@ -219,7 +219,7 @@ section {
     padding-left: 2rem;
 }
 
-.contacto {
+.canales_section {
     height: auto;
     border-bottom-right-radius: 2rem;
     border-bottom-left-radius: 2rem;
@@ -244,7 +244,7 @@ section {
     filter: sepia(1) saturate(50) hue-rotate(-36deg) brightness(0.7) contrast(1.2);
 }
 
-.redes_contenido {
+.canales_contenido {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -252,9 +252,9 @@ section {
     gap: 2rem;
     margin: 0 auto;
     max-width: 80rem;
-  }
+}
 
-.redes {
+.canales {
   width: 100%;            
   max-width: 40rem;    
   height: 20rem;         
@@ -264,8 +264,8 @@ section {
   display: block;
 }
 
-.redes_izq,
-.redes_der {
+.canales_izq,
+.canales_der {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -274,17 +274,17 @@ section {
 }
 
 
-.redes_contenido a {
+.canales_contenido a {
     text-decoration: none;
     color: var(--negro);
     font-weight: bold;
 }
 
-.redes_contenido p {
+.canales_contenido p {
     margin: 2rem;
 }
 
-.redes_contenido a:hover {
+.canales_contenido a:hover {
     color: var(--azul);
 }
 
@@ -368,7 +368,7 @@ section {
         align-items: center;
     }
 
-    .redes {
+    .canales {
         width: 90%;
         height: 17rem;
         object-fit: cover;
@@ -431,15 +431,15 @@ section {
         gap: 1rem;
     }
 
-    .redes {
+    .canales {
         width: 25%;
         height: 25%;
         margin: 3%;
         border-radius: 20%;
     }
 
-    .redes_izq,
-    .redes_der {
+    .canales_izq,
+    .canales_der {
         gap: 1rem;
     }
 
