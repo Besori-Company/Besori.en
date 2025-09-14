@@ -35,11 +35,7 @@
         <img class="x" src="img/header/x.webp" alt="x">
     </header>
 
-    <nav class="barra-nav" role="navigation" aria-label="Menú principal">
-        <a href="#inicio" class="activo">Start</a>
-        <a href="#nosotros">About us</a>
-        <a href="#canales">Channels</a>
-    </nav>
+    <div id="nav-placeholder"></div>
 
     <main>
         <section class="producto">
@@ -47,9 +43,11 @@
                 <img class="ico_azul" src="img/section/trazo.webp" alt="icono">
                 Products
             </h2>
-            <div class="producto_contenido image-container" id="hoverArea">
-                <img class="icono image-3d reset" src="img/iconos_productos/Ico_Collection.webp" alt="Icono Collection">
-                <span>Collection (In development)</span>
+            <div class="producto_contenido" id="hoverArea">
+                <div class="image-container">
+                <img class="icono image-3d reset" src="img/iconos_productos/Ico_Cloud.webp" alt="Icono Collection">
+                <span>Besori Cloud (In development)</span>
+                </div>
             </div>
         </section>
 
@@ -84,23 +82,9 @@
                 </span>
         </section>
 
-        <section class="sobre_nosotros" id="nosotros">
-            <h2 class="titulo">
-                <img class="ico_azul" src="img/section/trazo.webp" alt="icono">
-                About us
-            </h2>
-            <div class="nosotros">
-                <img class="nosotros_imagen" src="img/nosotros/logo.webp" alt="Icono Besori">
-                <div class="nosotros_contenido">
-                <p>Besori is an indie project and brand focused on developing apps and video games to deliver unique digital experiences.</p>
-                <p>Led by a student passionate about technology, Besori creates innovative and accessible projects for all enthusiasts.</p>
-                </div>
-            </div>
-        </section>
-
         <section class="canales_section" id="canales">
             <h2 class="titulo">
-            <img class="ico_amarillo" src="img/section/trazo.webp" alt="icono">
+            <img class="ico_azul" src="img/section/trazo.webp" alt="icono">
             Channels
             </h2>
             <div class="canales_contenido">
@@ -115,7 +99,7 @@
                     <img class="canales img-movil" src="img/canales/instagram_ico.webp" alt="instagram_img">
                 </div>
                 <div class="canales_izq">
-                    <img class="canales img-escritorio" src="img/canales/PlayStore.webp" alt="playtore_img">
+                    <img class="canales img-escritorio" src="img/canales/playstore.webp" alt="playtore_img">
                     <img class="canales img-movil" src="img/canales/PlayStore_ico.webp" alt="playstore_img">
                     <p>Our games and apps in <a href="#Collection">PlayStore</a></p>
                 </div>
@@ -128,13 +112,11 @@
         </section>
     </main>
 
-    <footer role="contentinfo">
-        <span>© 2025 Besori ®</span>
-        <span><a href="terms.html">Terms and Policies</a></span>
-        <span><a href="mailto:besoricompany@gmail.com">besoricompany@gmail.com</a></span>
-    </footer>
+    <div id="footer-placeholder"></div>
 
-    <script src="js/recargar_scroll.js"></script>
+    <script src="includes/nav.js"></script>
+    <script src="includes/footer.js"></script>
     <script src="js/animacion_fondo.js"></script>
+    <script src="js/footerYear.js"></script>
 </body>
 </html>

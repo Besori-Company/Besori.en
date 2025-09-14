@@ -64,10 +64,7 @@ header {
     background-position: left center;
     padding-bottom: 2rem;
     margin: 3% auto 0.5rem auto;
-    border-top-left-radius: 2rem;
-    border-top-right-radius: 2rem;
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
+    border-radius: 2rem 2rem 0.5rem 0.5rem;
     background-color: var(--blanco);
     position: relative;
 }
@@ -193,30 +190,11 @@ section {
     justify-content: center;
 }
 
-
-.nosotros {
+.producto_contenido div{
+    border-radius: 2rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    width: 95%;
-    margin-bottom: 6rem;
-}
-
-.sobre_nosotros {
-    text-align: center;
-    width: 95%;
-}
-
-.nosotros_imagen {
-    width: 30%;
-    margin-top: 5rem;
-    margin-bottom: 6rem;
-}
-
-.nosotros_contenido {
-    text-align: justify;
-    padding-left: 2rem;
+    justify-content: center;
 }
 
 .canales_section {
@@ -359,10 +337,6 @@ section {
         height: 6rem;
     }
 
-    .nosotros_imagen {
-        width: 50%;
-    }
-
     footer {
         gap: 1rem;
         align-items: center;
@@ -414,15 +388,6 @@ section {
         flex-direction: row;
         text-align: left;
         padding-right: 1.5rem;
-    }
-
-    .nosotros_imagen {
-        width: 70%;
-    }
-
-    .nosotros_contenido {
-        text-align: justify;
-        padding: 0 2rem;
     }
 
     footer {
