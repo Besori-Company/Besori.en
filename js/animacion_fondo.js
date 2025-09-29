@@ -1,18 +1,16 @@
 const containers = document.querySelectorAll('.producto_contenido');
 let isAnimating = false;
 let currentColor = null;
+let animationTimeout = null;
+let expandTimeout = null;
 
 containers.forEach(container => {
   container.addEventListener('mouseenter', () => {
     const root = document.documentElement;
     
-    let newColor;
-
-    if (container.classList.contains('kael')) {
-      newColor = 'rgba(255, 140, 0, 0.55)';
-    } else if (container.classList.contains('cloud')) {
-      newColor = 'rgba(97, 204, 174, 0.81)';
-    }
+    const newColor = container.classList.contains('kael') 
+      ? 'rgba(255, 140, 0, 0.55)' 
+      : 'rgba(97, 204, 174, 0.81)';
     
     if (isAnimating || newColor === currentColor) {
       return;
@@ -22,17 +20,17 @@ containers.forEach(container => {
     
     root.classList.remove('hover-bg');
     
-    setTimeout(() => {
+    animationTimeout = setTimeout(() => {
       root.style.setProperty('--circle-color', newColor);
       currentColor = newColor;
       
       root.classList.add('hover-bg');
       
-      setTimeout(() => {
+      expandTimeout = setTimeout(() => {
         isAnimating = false;
       }, 200);
       
-    }, 500);
+    }, 400);
   });
 
   container.addEventListener('mousemove', (e) => {
@@ -42,11 +40,20 @@ containers.forEach(container => {
 
   container.addEventListener('mouseleave', () => {
     const root = document.documentElement;
+    
+    if (animationTimeout) {
+      clearTimeout(animationTimeout);
+      animationTimeout = null;
+    }
+    
+    if (expandTimeout) {
+      clearTimeout(expandTimeout);
+      expandTimeout = null;
+    }
+    
     root.classList.remove('hover-bg');
     
-    setTimeout(() => {
-      isAnimating = false;
-      currentColor = null;
-    }, 200);
+    isAnimating = false;
+    currentColor = null;
   });
 });
