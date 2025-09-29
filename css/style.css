@@ -24,7 +24,7 @@ html::before {
   width: 300vmax;
   height: 300vmax;
   transform: translate(-50%, -50%) scale(0);
-  background-color: rgba(97, 204, 174, 100);
+  background-color: var(--circle-color, rgba(97, 204, 174, 0.3));
   border-radius: 50%;
   opacity: 0;
   transition: transform 1.3s ease, opacity 0.6s ease;
@@ -139,7 +139,7 @@ section {
     width: 95%;
     margin: 0.5rem auto;
     border-radius: 0.5rem;
-    padding: 2rem;
+    padding: 2rem 2rem 8rem 2rem;
 }
 
 .titulo {
@@ -169,25 +169,57 @@ section {
   transform: rotateY(720deg) scale(1);
 }
 
-.image-container:hover .image-3d {
+.producto_contenido:hover .image-3d {
   transform: rotateY(1080deg) scale(1.1);
 }
 
-.image-container:hover {
+.producto_contenido:hover {
     transform: scale(1.05);
 }
 
-.producto {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+.productos-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .producto_contenido {
-    border-radius: 2rem;
-    display: flex;
-    align-items: center;
-    padding-bottom: 4rem;
-    justify-content: center;
+  width: clamp(260px, 90%, 700px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  background: transparent;
+}
+
+.image-container {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 9rem;
+  height: 9rem;
+  perspective: 1200px;
+}
+
+.icono {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  object-fit: contain;
+  display: block;
+  margin: 0;
+}
+
+.producto-nombre {
+  flex: 1;
+  text-align: left;
+  font-size: 1.8rem;
+  line-height: 1.3;
 }
 
 .producto_contenido div{
@@ -319,6 +351,20 @@ section {
     display: none;
 }
 
+
+@media (min-width: 768px) {
+  .productos-list {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+
+  .producto_contenido {
+    width: 300px;
+  }
+}
+
 @media (max-width: 1024px) {
     header {
         height: 40%;
@@ -388,6 +434,10 @@ section {
         flex-direction: row;
         text-align: left;
         padding-right: 1.5rem;
+    }
+
+    .producto-nombre {
+      font-size: 1.6rem;
     }
 
     footer {
