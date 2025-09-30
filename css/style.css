@@ -166,6 +166,7 @@ section {
 .image-3d {
   transform-style: preserve-3d;
   transition: transform 1s ease;
+  will-change: transform;
 }
 
 .image-3d.reset {
@@ -173,7 +174,7 @@ section {
 }
 
 .producto_contenido:hover .image-3d {
-  transform: rotateY(1080deg) scale(1.1);
+  transform: rotateY(360deg) scale(1.1);
 }
 
 .producto_contenido:hover {
