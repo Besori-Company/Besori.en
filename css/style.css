@@ -276,6 +276,11 @@ section {
   border-radius: 2rem;
   margin: 3% auto;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.canales:hover {
+    transform: scale(1.05) rotate(1deg);
 }
 
 .canales_izq,
@@ -285,8 +290,16 @@ section {
   align-items: center;
   gap: 2rem;
   margin: 1rem;
+  transition: transform 0.3s ease;
 }
 
+.canales_izq:hover {
+    transform: translateX(5px);
+}
+
+.canales_der:hover {
+    transform: translateX(-5px);
+}
 
 .canales_contenido a {
     text-decoration: none;
@@ -337,6 +350,13 @@ section {
     height: auto;
     margin-left: 2rem;
     margin-right: 5rem;
+    animation: wiggle 3s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(2deg); }
+    75% { transform: rotate(-2deg); }
 }
 
 .feedback_der {
@@ -455,11 +475,25 @@ section {
         height: 25%;
         margin: 3%;
         border-radius: 20%;
+        transition: transform 0.3s ease;
+    }
+
+    .canales:hover {
+        transform: scale(1.05) rotate(1deg);
     }
 
     .canales_izq,
     .canales_der {
         gap: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .canales_izq:hover {
+        transform: translateX(5px);
+    }
+
+    .canales_der:hover {
+        transform: translateX(-5px);
     }
 
     .img-escritorio {
@@ -489,6 +523,7 @@ section {
         width: 25%;
         height: 25%;
         margin: 3%;
+        animation: wiggle 3s ease-in-out infinite;
     }
 
     .movil_only div {
