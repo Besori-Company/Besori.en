@@ -351,13 +351,17 @@ section {
     height: auto;
     margin-left: 1.5rem;
     margin-right: 4rem;
-    animation: wiggle 3s ease-in-out infinite;
+    animation: wiggle 2.7s ease-in-out infinite;
 }
 
 @keyframes wiggle {
-    0%, 100% { transform: rotate(0deg); }
-    25% { transform: rotate(2deg); }
-    75% { transform: rotate(-2deg); }
+    0%   { transform: rotate(0deg); }
+    15%  { transform: rotate(2deg); }
+    30%  { transform: rotate(-2deg); }
+    45%  { transform: rotate(1.5deg); }
+    60%  { transform: rotate(-1.5deg); }
+    75%  { transform: rotate(1deg); }
+    100% { transform: rotate(0deg); }
 }
 
 .feedback_der {
