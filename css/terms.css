@@ -1,26 +1,27 @@
 .terms {
-    padding: 6rem;
+    padding: 4.5rem;
 }
 
 .text {
-  font-size: 2.2rem;
+  font-size: 1.9rem;
+  line-height: 1.6;
 }
 
 .terms_section {
     height: auto;
-    border-bottom-right-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    padding: 6rem;
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    padding: 4.5rem;
 }
 
 ul li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 ol > li > strong {
   display: block;
-  margin-bottom: 1.2rem;
-  margin-top: 5rem;
+  margin-bottom: 1rem;
+  margin-top: 4rem;
   font-weight: bold;
 }
 
@@ -31,21 +32,88 @@ ol li::marker {
 .terms a {
   text-decoration: none;
   color: inherit;
+  text-decoration: underline;
+}
+
+.terms a:hover {
+  color: var(--azul);
+}
+
+@media (max-width: 1024px) {
+  .terms_section,
+  .terms {
+    padding: 3.5rem;
+  }
+
+  .text {
+    font-size: 1.8rem;
+  }
+
+  ol > li > strong {
+    margin-top: 3rem;
+  }
 }
 
 @media (max-width: 750px) {
   .terms_section,
   .terms {
-    padding: 1rem;
-    padding-right: 4rem;
+    padding: 2rem;
+    padding-right: 2.5rem;
+    padding-bottom: 3rem;
+  }
+
+  .titulo {
+    font-size: 2.8rem;
+  }
+
+  .text {
+    font-size: 1.5rem;
+  }
+
+  ul li {
+    margin-bottom: 0.6rem;
+  }
+
+  ol > li > strong {
+    margin-top: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .terms_section,
+  .terms {
+    padding: 1.5rem;
+    padding-right: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .titulo {
+    font-size: 2.5rem;
+  }
+
+  .text {
+    font-size: 1.4rem;
+  }
+
+  ol > li > strong {
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .terms_section,
+  .terms {
+    padding: 1.2rem;
+    padding-right: 1.5rem;
     padding-bottom: 2rem;
   }
 
   .titulo {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 
   .text {
-  font-size: 1.7rem;
+    font-size: 1.3rem;
   }
 }
