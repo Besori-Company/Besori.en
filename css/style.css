@@ -161,25 +161,32 @@ section {
     border-radius: 1rem;
 }
 
-.image-container {
-  perspective: 1200px;
-}
 .image-3d {
-  transform-style: preserve-3d;
-  transition: transform 1s ease;
-  will-change: transform;
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform: translateZ(0);
 }
 
 .image-3d.reset {
-  transform: rotateY(720deg) scale(1);
+  transform: translateZ(0);
 }
 
 .producto_contenido:hover .image-3d {
-  transform: rotateY(360deg) scale(1.1);
+  transform: scale(1.03) translateY(-6px) translateZ(0);
+  will-change: transform;
+  animation: bounce-elastic 0.6s ease-in-out;
+}
+
+@keyframes bounce-elastic {
+  0% { transform: scale(1) translateY(0) translateZ(0); }
+  30% { transform: scale(1.07) translateY(-9px) translateZ(0); }
+  50% { transform: scale(1.01) translateY(-4px) translateZ(0); }
+  70% { transform: scale(1.05) translateY(-7px) translateZ(0); }
+  100% { transform: scale(1.03) translateY(-6px) translateZ(0); }
 }
 
 .producto_contenido:hover {
-    transform: scale(1.05);
+  transform: translateY(-2px) translateZ(0);
+  transition: all 0.3s ease;
 }
 
 .productos-list {
@@ -199,16 +206,17 @@ section {
   padding: 0.8rem 1.2rem;
   border-radius: 1rem;
   background: transparent;
+  transition: all 0.3s ease;
 }
 
 .image-container {
+  perspective: 1200px;
   flex: 0 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 7rem;
   height: 7rem;
-  perspective: 1200px;
 }
 
 .icono {
