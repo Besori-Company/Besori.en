@@ -316,6 +316,14 @@ section {
     font-weight: bold;
 }
 
+.canales_contenido a.img-link {
+    display: contents;
+}
+
+.canales_contenido a.img-link img {
+    cursor: pointer;
+}
+
 .canales_contenido p {
     margin: 1.5rem;
 }
