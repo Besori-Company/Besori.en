@@ -59,7 +59,7 @@ document.getElementById("nav-placeholder").innerHTML = `
                         <input type="checkbox" id="recordar">
                         <span>Remember me</span>
                     </label>
-                    <a href="#" class="link_recuperar">Forgot your password?</a>
+                    <!-- <a href="#" class="link_recuperar">Forgot your password?</a> -->
                 </div>
 
                 <button type="submit" class="btn_submit">Sign In</button>
@@ -123,7 +123,7 @@ document.getElementById("nav-placeholder").innerHTML = `
                 <div class="form_grupo">
                     <label class="checkbox_label">
                         <input type="checkbox" id="terminos" required>
-                        <span style="font-size: 1.5rem;">I accept the <a href="#">terms and conditions</a></span>
+                        <span style="font-size: 1.5rem;">I accept the <a href="/Besori.en/pages/terms.html">terms and conditions</a></span>
                     </label>
                 </div>
 
