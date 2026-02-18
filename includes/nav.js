@@ -123,7 +123,7 @@ document.getElementById("nav-placeholder").innerHTML = `
                 <div class="form_grupo">
                     <label class="checkbox_label">
                         <input type="checkbox" id="terminos" required>
-                        <span style="font-size: 1.5rem;">I accept the <a href="/Besori.en/pages/terms.html">terms and conditions</a></span>
+                        <span style="font-size: 1.5rem;">I accept the <a href="/Besori.en/pages/terms.html" style="color: #3577b1; text-decoration: none;">terms and conditions</a></span>
                     </label>
                 </div>
 
