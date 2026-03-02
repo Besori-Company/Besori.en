@@ -1,8 +1,7 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-analytics.js";
-import { 
-    getAuth, 
+import {
+    getAuth,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
@@ -10,12 +9,20 @@ import {
     updateProfile,
     GoogleAuthProvider,
     signInWithPopup,
+    signInWithRedirect,
+    getRedirectResult,
     setPersistence,
     browserLocalPersistence,
     browserSessionPersistence
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
-// Your web app's Firebase configuration
+import {
+    getFirestore,
+    doc,
+    setDoc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+
 const firebaseConfig = {
     apiKey: "AIzaSyDZqmt6-7MbFbd6J5bB_5lIHivAorfIL-I",
     authDomain: "besori-508f0.firebaseapp.com",
@@ -26,92 +33,180 @@ const firebaseConfig = {
     measurementId: "G-C9Y7FBCTME"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-// Configurar proveedores de autenticación
 const googleProvider = new GoogleAuthProvider();
 
-// ==================== FUNCIONES DE AUTENTICACIÓN ====================
+// ==================== TOTP MFA ====================
 
-// Registrar usuario con email y contraseña
+function cargarOTPAuth() {
+    return new Promise((resolve, reject) => {
+        if (window.OTPAuth) { resolve(window.OTPAuth); return; }
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/otpauth/9.3.6/otpauth.umd.min.js';
+        script.onload = () => resolve(window.OTPAuth);
+        script.onerror = reject;
+        document.head.appendChild(script);
+    });
+}
+
+export async function generarSecretoTotp(email) {
+    try {
+        const OTPAuth = await cargarOTPAuth();
+        const secret = new OTPAuth.Secret({ size: 20 });
+        const secretBase32 = secret.base32;
+        const totp = new OTPAuth.TOTP({
+            issuer: 'Besori',
+            label: email,
+            algorithm: 'SHA1',
+            digits: 6,
+            period: 30,
+            secret: OTPAuth.Secret.fromBase32(secretBase32)
+        });
+        const totpUri = totp.toString();
+        return { success: true, secretBase32, totpUri };
+    } catch (error) {
+        return { success: false, error: 'Error generating the QR code.' };
+    }
+}
+
+export async function verificarCodigoTotp(secretBase32, codigo) {
+    try {
+        const OTPAuth = await cargarOTPAuth();
+        const totp = new OTPAuth.TOTP({
+            algorithm: 'SHA1',
+            digits: 6,
+            period: 30,
+            secret: OTPAuth.Secret.fromBase32(secretBase32)
+        });
+        const delta = totp.validate({ token: codigo.trim(), window: 1 });
+        return delta !== null;
+    } catch (error) {
+        return false;
+    }
+}
+
+export async function guardarMfaActivado(uid, secretBase32) {
+    try {
+        await setDoc(doc(db, 'usuarios', uid), {
+            mfaConfigurado: true,
+            totpSecret: secretBase32
+        }, { merge: true });
+        return { success: true };
+    } catch (error) {
+        return { success: false, error: 'Error saving the configuration.' };
+    }
+}
+
+export async function obtenerDatosUsuario(uid) {
+    try {
+        const snap = await getDoc(doc(db, 'usuarios', uid));
+        if (snap.exists()) return { success: true, data: snap.data() };
+        return { success: true, data: null };
+    } catch (error) {
+        return { success: false, data: null };
+    }
+}
+
+// ==================== AUTHENTICATION ====================
+
 export async function registrarUsuario(email, password, nombre) {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        
-        // Actualizar el perfil con el nombre
-        await updateProfile(user, {
-            displayName: nombre
+        await updateProfile(user, { displayName: nombre });
+        await setDoc(doc(db, 'usuarios', user.uid), {
+            nombre,
+            email,
+            mfaConfigurado: false,
+            creadoEn: new Date()
         });
-        
-        console.log("Usuario registrado exitosamente:", user);
-        return { success: true, user };
+        return { success: true, user, requiresMfaSetup: true };
     } catch (error) {
-        console.error("Error al registrar usuario:", error);
         return { success: false, error: obtenerMensajeError(error.code) };
     }
 }
 
-// Iniciar sesión con email y contraseña
 export async function iniciarSesion(email, password, recordar = false) {
     try {
-        // Configurar persistencia según la opción "recordar"
         const persistence = recordar ? browserLocalPersistence : browserSessionPersistence;
         await setPersistence(auth, persistence);
-        
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
-        
-        console.log("Sesión iniciada exitosamente:", user);
-        return { success: true, user };
+        const snap = await getDoc(doc(db, 'usuarios', user.uid));
+        const datos = snap.exists() ? snap.data() : {};
+        if (!datos.mfaConfigurado) {
+            return { success: true, user, requiresMfaSetup: true };
+        }
+        return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
     } catch (error) {
-        console.error("Error al iniciar sesión:", error);
         return { success: false, error: obtenerMensajeError(error.code) };
     }
 }
 
-// Cerrar sesión
+export async function iniciarSesionConGoogle() {
+    try {
+        const esLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+        if (esLocal) {
+            const result = await signInWithPopup(auth, googleProvider);
+            return await procesarUsuarioGoogle(result.user);
+        } else {
+            await signInWithRedirect(auth, googleProvider);
+            return { success: true, redirecting: true };
+        }
+    } catch (error) {
+        return { success: false, error: obtenerMensajeError(error.code) };
+    }
+}
+
+async function procesarUsuarioGoogle(user) {
+    const snap = await getDoc(doc(db, 'usuarios', user.uid));
+    if (!snap.exists()) {
+        await setDoc(doc(db, 'usuarios', user.uid), {
+            nombre: user.displayName,
+            email: user.email,
+            mfaConfigurado: false,
+            creadoEn: new Date()
+        });
+        return { success: true, user, requiresMfaSetup: true };
+    }
+    const datos = snap.data();
+    if (!datos.mfaConfigurado) {
+        return { success: true, user, requiresMfaSetup: true };
+    }
+    return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
+}
+
+export async function manejarRedirectGoogle() {
+    try {
+        const result = await getRedirectResult(auth);
+        if (!result) return null;
+        return await procesarUsuarioGoogle(result.user);
+    } catch (error) {
+        return { success: false, error: obtenerMensajeError(error.code) };
+    }
+}
+
 export async function cerrarSesion() {
     try {
         await signOut(auth);
-        console.log("Sesión cerrada exitosamente");
         return { success: true };
     } catch (error) {
-        console.error("Error al cerrar sesión:", error);
         return { success: false, error: obtenerMensajeError(error.code) };
     }
 }
 
-// Iniciar sesión con Google
-export async function iniciarSesionConGoogle() {
-    try {
-        const result = await signInWithPopup(auth, googleProvider);
-        const user = result.user;
-        
-        console.log("Sesión iniciada con Google:", user);
-        return { success: true, user };
-    } catch (error) {
-        console.error("Error al iniciar sesión con Google:", error);
-        return { success: false, error: obtenerMensajeError(error.code) };
-    }
-}
-
-// Observador de estado de autenticación
 export function observarEstadoAutenticacion(callback) {
     return onAuthStateChanged(auth, callback);
 }
 
-// Obtener usuario actual
 export function obtenerUsuarioActual() {
     return auth.currentUser;
 }
 
-// ==================== FUNCIONES AUXILIARES ====================
-
-// Translate Firebase error codes to English messages
 function obtenerMensajeError(codigoError) {
     const mensajes = {
         'auth/email-already-in-use': 'This email address is already registered',
@@ -121,16 +216,13 @@ function obtenerMensajeError(codigoError) {
         'auth/user-disabled': 'This account has been disabled',
         'auth/user-not-found': 'No account exists with this email address',
         'auth/wrong-password': 'Incorrect password',
-        'auth/invalid-credential': 'Invalid credentials',
+        'auth/invalid-credential': 'Invalid credentials. Check your email and password',
         'auth/too-many-requests': 'Too many failed attempts. Please try again later',
         'auth/network-request-failed': 'Connection error. Please check your internet',
         'auth/popup-closed-by-user': 'You closed the authentication window',
-        'auth/cancelled-popup-request': 'Operation cancelled',
         'auth/popup-blocked': 'Your browser blocked the pop-up window'
     };
-    
     return mensajes[codigoError] || 'An error occurred. Please try again';
 }
 
-// Exportar auth para uso externo si es necesario
-export { auth };
+export { auth, db };

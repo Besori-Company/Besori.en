@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>404 | Besori</title>
+    <link rel="icon" href="https://besori-company.github.io/favicon.ico">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght,ROND@100..900,100&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="preload" href="/Besori.en/css/normalize.css" as="style">
+    <link rel="stylesheet" href="/Besori.en/css/normalize.css">
+    <link rel="preload" href="/Besori.en/css/style.css" as="style">
+    <link rel="stylesheet" href="/Besori.en/css/style.css">
+    <style>
+        .error-section {
+            text-align: center;
+            padding: 6rem 2rem 8rem;
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .error-code {
+            font-family: "Doto", sans-serif;
+            font-size: 14rem;
+            color: var(--azul);
+            line-height: 1;
+            margin-bottom: 1rem;
+            animation: floatCode 3s ease-in-out infinite;
+        }
+
+        @keyframes floatCode {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .error-subtitle {
+            font-family: "Doto", sans-serif;
+            font-size: 3rem;
+            color: var(--negro);
+            margin-bottom: 1rem;
+        }
+
+        .error-message {
+            font-size: 1.8rem;
+            color: var(--negro_claro);
+            max-width: 450px;
+            line-height: 1.5;
+            margin-bottom: 3rem;
+        }
+
+        .error-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1.2rem 3rem;
+            background: var(--azul);
+            color: var(--blanco);
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.6rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(53, 119, 177, 0.3);
+        }
+
+        .error-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(53, 119, 177, 0.5);
+        }
+
+        .error-link svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .error-link:hover svg {
+            transform: translateX(-3px);
+        }
+
+        @media (max-width: 750px) {
+            .error-code {
+                font-size: 10rem;
+            }
+
+            .error-subtitle {
+                font-size: 2.2rem;
+            }
+
+            .error-message {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .error-code {
+                font-size: 8rem;
+            }
+
+            .error-subtitle {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cookies-placeholder"></div>
+    <header id="inicio" role="banner">
+        <img class="x" src="/Besori.en/img/header/x.webp" alt="x">
+        <img class="inicio_imagen" src="/Besori.en/img/header/Besori.webp" alt="Besori">
+        <h1>Besori – Indie Development Studio</h1>
+        <img class="x" src="/Besori.en/img/header/x.webp" alt="x">
+    </header>
+
+    <div id="nav-placeholder"></div>
+
+    <main>
+        <section class="error-section">
+            <span class="error-code">404</span>
+            <p class="error-subtitle">Page not found</p>
+            <p class="error-message">It looks like this page doesn't exist or has been moved. Don't worry, you can go back to the homepage.</p>
+            <a href="/Besori.en/index.html" class="error-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                Back to home
+            </a>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="/Besori.en/includes/cookies.js"></script>
+    <script src="/Besori.en/includes/nav.js"></script>
+    <script src="/Besori.en/includes/footer.js"></script>
+    <script src="/Besori.en/js/footerYear.js"></script>
+</body>
+</html>
