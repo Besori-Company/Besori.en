@@ -593,6 +593,11 @@ section {
   line-height: 1.3;
 }
 
+.estado-dev {
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+
 .producto_contenido div{
     border-radius: 1.5rem;
     display: flex;
@@ -632,15 +637,13 @@ section {
     align-items: center;
     gap: 1.5rem;
     margin: 0 auto;
-    max-width: 70rem;
+    max-width: 55rem;
 }
 
 .canales {
-  width: 100%;            
-  max-width: 35rem;    
-  height: 17rem;         
-  object-fit: cover;     
-  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 35rem;
+  height: auto;
   margin: 2% auto;
   display: block;
   transition: transform 0.3s ease;
@@ -808,7 +811,7 @@ section {
         height: 15rem;
         object-fit: cover;
         border-radius: 1.5rem;
-      }
+    }
     
 }
 
@@ -895,9 +898,8 @@ section {
 
     .canales {
         width: 22%;
-        height: 22%;
+        height: auto;
         margin: 2.5%;
-        border-radius: 20%;
         transition: transform 0.3s ease;
     }
 

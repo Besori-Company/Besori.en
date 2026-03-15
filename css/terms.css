@@ -1,5 +1,44 @@
+.terms,
+.terms_section {
+    position: relative;
+    overflow: hidden;
+}
+
+.terms-deco {
+    position: absolute !important;
+    pointer-events: none;
+    z-index: 0 !important;
+}
+
+.terms-deco-tr {
+    bottom: 42px !important;
+    right: 15px !important;
+    left: auto !important;
+    top: auto !important;
+    width: 120px;
+    height: 120px;
+    opacity: 0.22;
+}
+
+.terms-deco-bl {
+    bottom: 12px !important;
+    right: 140px !important;
+    left: auto !important;
+    top: auto !important;
+    width: 65px;
+    height: 65px;
+    opacity: 0.22;
+}
+
+.terms > *,
+.terms_section > * {
+    position: relative;
+    z-index: 1;
+}
+
 .terms {
     padding: 4.5rem;
+    padding-bottom: 6rem;
 }
 
 .text {
@@ -12,6 +51,7 @@
     border-bottom-right-radius: 1.5rem;
     border-bottom-left-radius: 1.5rem;
     padding: 4.5rem;
+    padding-bottom: 6rem;
 }
 
 ul li {
@@ -77,6 +117,12 @@ ol li::marker {
   ol > li > strong {
     margin-top: 2.5rem;
     margin-bottom: 0.8rem;
+  }
+}
+
+@media (max-width: 1617px) {
+  .terms-deco {
+    display: none;
   }
 }
 
