@@ -1,5 +1,6 @@
 (function() {
-    if (localStorage.getItem('cookieConsent')) return;
+    const consentData = JSON.parse(localStorage.getItem('cookieConsent') || 'null');
+    if (consentData && (Date.now() - consentData.timestamp) < 30 * 24 * 60 * 60 * 1000) return;
 
     // Styles
     if (!document.getElementById('cookie-styles')) {
@@ -132,13 +133,13 @@
     `;
 
     document.getElementById('cookieAcceptAll').addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'all');
+        localStorage.setItem('cookieConsent', JSON.stringify({ type: 'all', timestamp: Date.now() }));
         document.getElementById('cookieBanner').style.animation = 'cookieSlideUp 0.3s ease reverse forwards';
         setTimeout(function() { placeholder.innerHTML = ''; }, 300);
     });
 
     document.getElementById('cookieEssential').addEventListener('click', function() {
-        localStorage.setItem('cookieConsent', 'essential');
+        localStorage.setItem('cookieConsent', JSON.stringify({ type: 'essential', timestamp: Date.now() }));
         document.getElementById('cookieBanner').style.animation = 'cookieSlideUp 0.3s ease reverse forwards';
         setTimeout(function() { placeholder.innerHTML = ''; }, 300);
     });

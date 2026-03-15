@@ -176,6 +176,7 @@ document.getElementById("nav-placeholder").innerHTML = `
             </div>
             <div id="mfa-setup-error" class="mfa_error" style="display:none;"></div>
             <button type="button" class="btn_submit" id="btn-activar-mfa">Enable two-step verification</button>
+            <button type="button" class="btn_link" id="btn-mfa-despues">Set up later</button>
             <p class="mfa_nota">Your account will be protected with this setup</p>
         </div>
     </div>
@@ -315,7 +316,18 @@ soloNumeros('mfa-login-codigo');
 // Close modals
 document.getElementById('cerrar-modal-auth').addEventListener('click', () => cerrarModal('modal-auth'));
 document.getElementById('modal-auth').addEventListener('click', e => { if (e.target.id === 'modal-auth') cerrarModal('modal-auth'); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarTodos(); });
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        if (document.getElementById('modal-mfa-setup').classList.contains('modal_activo')) {
+            document.getElementById('btn-mfa-despues').click();
+        } else {
+            cerrarTodos();
+        }
+    }
+});
+document.getElementById('modal-mfa-setup').addEventListener('click', e => {
+    if (e.target.id === 'modal-mfa-setup') document.getElementById('btn-mfa-despues').click();
+});
 
 // Account button
 document.querySelector('.btn_usuario').addEventListener('click', async (e) => {
@@ -331,7 +343,10 @@ document.querySelector('.btn_usuario').addEventListener('click', async (e) => {
 
 // ==================== MFA SETUP ====================
 
+let _setupMfaEnCurso = false;
 async function iniciarSetupMfa() {
+    if (_setupMfaEnCurso) return;
+    _setupMfaEnCurso = true;
     cerrarTodos();
     document.getElementById('qr-loading').style.display = 'flex';
     document.getElementById('qr-code-div').style.display = 'none';
@@ -377,6 +392,8 @@ async function iniciarSetupMfa() {
         });
     } catch (err) {
         document.getElementById('qr-loading').innerHTML = '<span style="color:#ef4444">Error generating QR. Use the manual code.</span>';
+    } finally {
+        _setupMfaEnCurso = false;
     }
 }
 
@@ -411,7 +428,7 @@ document.getElementById('btn-activar-mfa').addEventListener('click', async () =>
     btn.textContent = 'Verifying...';
 
     try {
-        const { verificarCodigoTotp, guardarMfaActivado, obtenerUsuarioActual } = await import('/Besori.en/includes/firebase.js');
+        const { verificarCodigoTotp, guardarMfaActivado, obtenerUsuarioActual, obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
         const user = obtenerUsuarioActual();
         const esValido = await verificarCodigoTotp(_totpSecretSetup, codigo);
 
@@ -429,7 +446,8 @@ document.getElementById('btn-activar-mfa').addEventListener('click', async () =>
             window._mfaEnProceso = false;
             cerrarModal('modal-mfa-setup');
             mostrarNotificacion('Two-step verification enabled! Your account is protected.', 'exito');
-            actualizarMenuUsuario(user);
+            const { data } = await obtenerDatosUsuario(user.uid);
+            actualizarMenuUsuario(user, data?.nombre);
         } else {
             errorDiv.textContent = resultado.error;
             errorDiv.style.display = 'block';
@@ -441,6 +459,17 @@ document.getElementById('btn-activar-mfa').addEventListener('click', async () =>
         btn.disabled = false;
         btn.textContent = 'Enable two-step verification';
     }
+});
+
+// Set up later
+document.getElementById('btn-mfa-despues').addEventListener('click', async () => {
+    const { cerrarSesion } = await import('/Besori.en/includes/firebase.js');
+    await cerrarSesion();
+    _totpSecretSetup = null;
+    window._mfaEnProceso = false;
+    _setupMfaEnCurso = false;
+    cerrarModal('modal-mfa-setup');
+    mostrarNotificacion('You can set up two-step verification next time you sign in', 'info');
 });
 
 // ==================== MFA LOGIN VERIFY ====================
@@ -564,6 +593,7 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
 
         if (resultado.success) {
             e.target.reset();
+            window._mfaEnProceso = true;
             mostrarNotificacion('Account created! Now set up two-step verification', 'exito');
             await iniciarSetupMfa();
         } else {
@@ -632,12 +662,12 @@ document.getElementById('btn-google-registro').addEventListener('click', manejar
             if (!data || !data.mfaConfigurado) {
                 window._mfaEnProceso = true;
                 if (btnTexto) btnTexto.textContent = 'Account';
-                mostrarNotificacion('You must set up two-step verification to continue', 'info');
                 await iniciarSetupMfa();
                 return;
             }
-            if (btnTexto) btnTexto.textContent = user.displayName || user.email.split('@')[0];
-            actualizarMenuUsuario(user);
+            const nombre = data.nombre || user.displayName || user.email.split('@')[0];
+            if (btnTexto) btnTexto.textContent = nombre;
+            actualizarMenuUsuario(user, nombre);
         } else {
             if (btnTexto) btnTexto.textContent = 'Account';
             const m = document.getElementById('menu-usuario');
@@ -648,8 +678,11 @@ document.getElementById('btn-google-registro').addEventListener('click', manejar
 
 // ==================== USER MENU ====================
 
-function actualizarMenuUsuario(user) {
+function actualizarMenuUsuario(user, nombre) {
     if (!user) return;
+    const displayName = nombre || user.displayName || 'User';
+    const btnTexto = document.querySelector('.btn_usuario .btn_texto');
+    if (btnTexto) btnTexto.textContent = displayName;
     const btnUsuario = document.querySelector('.btn_usuario');
     let menu = document.getElementById('menu-usuario');
     if (!menu) {
@@ -658,7 +691,7 @@ function actualizarMenuUsuario(user) {
         menu.className = 'menu_usuario';
         menu.innerHTML = `
             <div class="menu_usuario_info">
-                <strong>${user.displayName || 'User'}</strong>
+                <strong>${displayName}</strong>
                 <small>${user.email}</small>
             </div>
             <hr>
