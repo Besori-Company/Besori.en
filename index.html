@@ -39,26 +39,40 @@
     <div id="nav-placeholder"></div>
 
     <main>
-        <section class="producto">
-            <h2  id="Collection" class="titulo">
-                <span class="titulo_ico azul"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-                Products
-            </h2>
-            <div class="productos-list">
-              <article class="producto_contenido cloud">
-                <div class="image-container">
-                  <img class="icono image-3d reset" src="img/iconos_productos/ico_Cloud.webp" alt="Icon Besori Cloud">
+        <section class="producto" aria-labelledby="Collection">
+          <h2 id="Collection" class="titulo">
+            <span class="titulo_ico azul"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+            Products
+          </h2>
+          <div class="productos-list">
+
+            <article class="producto-card cloud">
+              <div class="producto-card__info">
+                <div class="producto-card__header">
+                  <div class="image-container">
+                    <img class="icono image-3d reset" src="img/iconos_productos/ico_Cloud.webp" alt="Icon Besori Cloud">
+                  </div>
+                  <h3 class="producto-card__nombre">Besori Cloud</h3>
                 </div>
-                <span class="producto-nombre">Besori Cloud<br><span class="estado-dev" style="color:#61ccae">● </span><small class="estado-dev">In development</small></span>
-              </article>
-            
-              <article class="producto_contenido kael">
-                <div class="image-container">
-                  <img class="icono image-3d reset" src="img/iconos_productos/ico_Kael.webp" alt="Icon Kael">
+                <span class="estado-badge estado-badge--verde">In development</span>
+                <p class="producto-card__desc">Web-based file manager. Store and organize files on your own computers or servers.</p>
+              </div>
+            </article>
+
+            <article class="producto-card kael">
+              <div class="producto-card__info">
+                <div class="producto-card__header">
+                  <div class="image-container">
+                    <img class="icono image-3d reset" src="img/iconos_productos/ico_Kael.webp" alt="Icon Kael">
+                  </div>
+                  <h3 class="producto-card__nombre">Kael</h3>
                 </div>
-                <span class="producto-nombre">Kael<br><span class="estado-dev" style="color:#ff8c00">● </span><small class="estado-dev">In development</small></span>
-              </article>
-            </div>
+                <span class="estado-badge estado-badge--naranja">In development</span>
+                <p class="producto-card__desc">Local and online model orchestrator and agent with window and system control.</p>
+              </div>
+            </article>
+
+          </div>
         </section>
 
         <section class="feedback_section">
