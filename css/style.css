@@ -867,12 +867,6 @@ section {
 .canal-card--playstore {
     background: linear-gradient(135deg, #f8f0d8 0%, #f0e2c8 100%);
 }
-.canal-card--playstore .canal-card__icono {
-    background: transparent;
-    width: auto;
-    height: auto;
-    border-radius: 0;
-}
 
 .canal-card--x {
     background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
