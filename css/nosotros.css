@@ -1,7 +1,7 @@
 .sobre_nosotros {
     text-align: center;
     width: 95%;
-    border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
+    border-radius: var(--radio_pequeno) var(--radio_pequeno) var(--radio_grande) var(--radio_grande);
     position: relative;
     overflow: hidden;
     display: flex;
