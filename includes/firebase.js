@@ -7,11 +7,12 @@ import {
     signOut,
     onAuthStateChanged,
     updateProfile,
+    sendEmailVerification,
+    sendPasswordResetEmail,
     GoogleAuthProvider,
     signInWithPopup,
     setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence
+    browserLocalPersistence
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 import {
@@ -122,24 +123,28 @@ export async function registrarUsuario(email, password, nombre) {
             mfaConfigurado: false,
             creadoEn: new Date()
         });
-        return { success: true, user, requiresMfaSetup: true };
+        await sendEmailVerification(user);
+        return { success: true, user, requiresEmailVerification: true };
     } catch (error) {
         return { success: false, error: obtenerMensajeError(error.code) };
     }
 }
 
-export async function iniciarSesion(email, password, recordar = false) {
+export async function iniciarSesion(email, password) {
     try {
-        const persistence = recordar ? browserLocalPersistence : browserSessionPersistence;
-        await setPersistence(auth, persistence);
+        await setPersistence(auth, browserLocalPersistence);
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
+        if (!user.emailVerified) {
+            await signOut(auth);
+            return { success: false, error: 'You must verify your email address before signing in. Check your inbox.' };
+        }
         const snap = await getDoc(doc(db, 'usuarios', user.uid));
         const datos = snap.exists() ? snap.data() : {};
-        if (!datos.mfaConfigurado) {
-            return { success: true, user, requiresMfaSetup: true };
+        if (datos.mfaConfigurado) {
+            return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
         }
-        return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
+        return { success: true, user };
     } catch (error) {
         return { success: false, error: obtenerMensajeError(error.code) };
     }
@@ -163,13 +168,13 @@ async function procesarUsuarioGoogle(user) {
             mfaConfigurado: false,
             creadoEn: new Date()
         });
-        return { success: true, user, requiresMfaSetup: true };
+        return { success: true, user };
     }
     const datos = snap.data();
-    if (!datos.mfaConfigurado) {
-        return { success: true, user, requiresMfaSetup: true };
+    if (datos.mfaConfigurado) {
+        return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
     }
-    return { success: true, user, requiresMfaVerify: true, totpSecret: datos.totpSecret };
+    return { success: true, user };
 }
 
 
@@ -179,6 +184,42 @@ export async function cerrarSesion() {
         return { success: true };
     } catch (error) {
         return { success: false, error: obtenerMensajeError(error.code) };
+    }
+}
+
+export async function recargarUsuario() {
+    const user = auth.currentUser;
+    if (!user) return null;
+    await user.reload();
+    return auth.currentUser;
+}
+
+export async function reenviarVerificacion() {
+    try {
+        const user = auth.currentUser;
+        if (!user) return { success: false, error: 'No active session.' };
+        await sendEmailVerification(user);
+        return { success: true };
+    } catch (error) {
+        return { success: false, error: obtenerMensajeError(error.code) };
+    }
+}
+
+export async function enviarRecuperacionPassword(email) {
+    try {
+        await sendPasswordResetEmail(auth, email);
+        return { success: true };
+    } catch (error) {
+        return { success: false, error: obtenerMensajeError(error.code) };
+    }
+}
+
+export async function desactivarMfa(uid) {
+    try {
+        await setDoc(doc(db, 'usuarios', uid), { mfaConfigurado: false, totpSecret: null }, { merge: true });
+        return { success: true };
+    } catch (error) {
+        return { success: false, error: 'Error disabling verification.' };
     }
 }
 
