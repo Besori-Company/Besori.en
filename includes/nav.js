@@ -289,8 +289,12 @@ function soloNumeros(inputId) {
 
 // ==================== FLOATING NAVIGATION ====================
 const nav = document.querySelector('.barra-nav');
+let navFijo = false;
 window.addEventListener('scroll', () => {
-    nav.classList.toggle('nav_fijo', window.pageYOffset > 100);
+    const y = window.pageYOffset;
+    if (!navFijo && y > 100) navFijo = true;
+    else if (navFijo && y < 50) navFijo = false;
+    nav.classList.toggle('nav_fijo', navFijo);
 });
 
 // ==================== TABS + SHOW PASSWORD ====================
