@@ -24,6 +24,61 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="preload" href="css/style.css" as="style">
     <link rel="stylesheet" href="css/style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://besoricompany.com/#organization",
+          "name": "Besori",
+          "legalName": "Besori",
+          "alternateName": ["Besori Company", "besoricompany", "Besori-Company"],
+          "url": "https://besoricompany.com",
+          "logo": "https://besoricompany.com/favicon.ico",
+          "image": "https://besoricompany.com/banner.png",
+          "description": "Indie studio focused on developing apps and video games. Minimalist interfaces, useful and accessible tools, with an open-source philosophy.",
+          "foundingDate": "2025",
+          "foundingLocation": {
+            "@type": "Place",
+            "name": "Valencia, Spain"
+          },
+          "email": "info.besori@gmail.com",
+          "sameAs": [
+            "https://github.com/Besori-Company/",
+            "https://www.instagram.com/b.e.s.o.r.i/",
+            "https://x.com/besoricompany"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://en.besoricompany.com/#website",
+          "url": "https://en.besoricompany.com",
+          "name": "Besori",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://besoricompany.com/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Besori Cloud",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Web",
+          "description": "Web-based file manager. Store and organise files on your own devices or servers.",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder" },
+          "author": { "@id": "https://besoricompany.com/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "name": "Kael",
+          "applicationCategory": "DeveloperApplication",
+          "operatingSystem": "Windows, Linux, macOS",
+          "description": "Orchestrator and agent for local and online AI models, with window and system control.",
+          "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder" },
+          "author": { "@id": "https://besoricompany.com/#organization" }
+        }
+      ]
+    }
+    </script>
 </head>
 
 

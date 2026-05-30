@@ -12,7 +12,8 @@ import {
     GoogleAuthProvider,
     signInWithPopup,
     setPersistence,
-    browserLocalPersistence
+    browserLocalPersistence,
+    inMemoryPersistence
 } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
 
 import {
@@ -112,8 +113,13 @@ export async function obtenerDatosUsuario(uid) {
 
 // ==================== AUTHENTICATION ====================
 
+export async function activarPersistenciaLocal() {
+    await setPersistence(auth, browserLocalPersistence);
+}
+
 export async function registrarUsuario(email, password, nombre) {
     try {
+        await setPersistence(auth, inMemoryPersistence);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         await updateProfile(user, { displayName: nombre });
