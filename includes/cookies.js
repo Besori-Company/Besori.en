@@ -123,7 +123,7 @@
         <div class="cookie_banner" id="cookieBanner">
             <p class="cookie_texto">
                 We use cookies to improve your experience. See our
-                <a href="/Besori.en/pages/terms.html">Cookie Policy</a>.
+                <a href="/pages/terms.html">Cookie Policy</a>.
             </p>
             <div class="cookie_botones">
                 <button class="cookie_btn cookie_btn_aceptar" id="cookieAcceptAll">Accept all</button>

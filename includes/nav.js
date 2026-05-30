@@ -3,8 +3,8 @@ document.getElementById("nav-placeholder").innerHTML = `
     <nav class="barra-nav" role="navigation" aria-label="Main menu">
         <div class="nav_contenedor">
             <div class="nav_enlaces">
-                <a href="/Besori.en/index.html">Home</a>
-                <a href="/Besori.en/pages/aboutus.html">About us</a>
+                <a href="/index.html">Home</a>
+                <a href="/pages/aboutus.html">About us</a>
             </div>
 
             <button class="btn_usuario" aria-label="User account">
@@ -103,7 +103,7 @@ document.getElementById("nav-placeholder").innerHTML = `
                 <div class="form_grupo">
                     <label class="checkbox_label">
                         <input type="checkbox" id="terminos" required>
-                        <span style="font-size:1.5rem;">I accept the <a href="/Besori.en/pages/terms.html" style="color:#3577b1;text-decoration:none;">terms and conditions</a></span>
+                        <span style="font-size:1.5rem;">I accept the <a href="/pages/terms.html" style="color:#3577b1;text-decoration:none;">terms and conditions</a></span>
                     </label>
                 </div>
                 <button type="submit" class="btn_submit">Create account</button>
@@ -389,7 +389,7 @@ document.getElementById('modal-mfa-setup').addEventListener('click', e => {
 // Account button
 document.querySelector('.btn_usuario').addEventListener('click', async (e) => {
     e.stopPropagation();
-    const { auth } = await import('/Besori.en/includes/firebase.js');
+    const { auth } = await import('/includes/firebase.js');
     if (!auth.currentUser) {
         abrirModal('modal-auth');
     } else {
@@ -413,7 +413,7 @@ async function iniciarSetupMfa() {
     abrirModal('modal-mfa-setup');
 
     try {
-        const { generarSecretoTotp, obtenerUsuarioActual } = await import('/Besori.en/includes/firebase.js');
+        const { generarSecretoTotp, obtenerUsuarioActual } = await import('/includes/firebase.js');
         const user = obtenerUsuarioActual();
         const resultado = await generarSecretoTotp(user.email);
 
@@ -484,7 +484,7 @@ document.getElementById('btn-activar-mfa').addEventListener('click', async () =>
     btn.textContent = 'Verifying...';
 
     try {
-        const { verificarCodigoTotp, guardarMfaActivado, obtenerUsuarioActual, obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { verificarCodigoTotp, guardarMfaActivado, obtenerUsuarioActual, obtenerDatosUsuario } = await import('/includes/firebase.js');
         const user = obtenerUsuarioActual();
         const esValido = await verificarCodigoTotp(_totpSecretSetup, codigo);
 
@@ -526,7 +526,7 @@ document.getElementById('btn-mfa-despues').addEventListener('click', async () =>
     _setupMfaEnCurso = false;
     cerrarModal('modal-mfa-setup');
     if (_usuarioActual) {
-        const { obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { obtenerDatosUsuario } = await import('/includes/firebase.js');
         const { data } = await obtenerDatosUsuario(_usuarioActual.uid);
         const nombre = data?.nombre || _usuarioActual.displayName || _usuarioActual.email.split('@')[0];
         _datosActuales = data;
@@ -562,14 +562,14 @@ document.getElementById('btn-verificar-mfa-login').addEventListener('click', asy
     btn.textContent = 'Verifying...';
 
     try {
-        const { verificarCodigoTotp } = await import('/Besori.en/includes/firebase.js');
+        const { verificarCodigoTotp } = await import('/includes/firebase.js');
         const esValido = await verificarCodigoTotp(_totpSecretLogin, codigo);
 
         if (esValido) {
             window._mfaEnProceso = false;
             cerrarModal('modal-mfa-login');
             mostrarNotificacion('Welcome! Signed in successfully', 'exito');
-            const { obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+            const { obtenerDatosUsuario } = await import('/includes/firebase.js');
             const { data } = await obtenerDatosUsuario(_usuarioSesionPendiente.uid);
             const nombre = data?.nombre || _usuarioSesionPendiente.displayName || _usuarioSesionPendiente.email.split('@')[0];
             actualizarMenuUsuario(_usuarioSesionPendiente, nombre, data);
@@ -589,7 +589,7 @@ document.getElementById('btn-verificar-mfa-login').addEventListener('click', asy
 });
 
 document.getElementById('btn-cancelar-mfa-login').addEventListener('click', async () => {
-    const { cerrarSesion } = await import('/Besori.en/includes/firebase.js');
+    const { cerrarSesion } = await import('/includes/firebase.js');
     await cerrarSesion();
     _totpSecretLogin = null;
     _usuarioSesionPendiente = null;
@@ -609,7 +609,7 @@ document.getElementById('form-login').addEventListener('submit', async (e) => {
     btn.textContent = 'Signing in...';
 
     try {
-        const { iniciarSesion, obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { iniciarSesion, obtenerDatosUsuario } = await import('/includes/firebase.js');
         const resultado = await iniciarSesion(email, password);
 
         if (resultado.success) {
@@ -653,7 +653,7 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
     try {
         window._mfaEnProceso = true;
         window._verificacionPendiente = true;
-        const { registrarUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { registrarUsuario } = await import('/includes/firebase.js');
         const resultado = await registrarUsuario(email, password, nombre);
 
         if (resultado.success) {
@@ -683,7 +683,7 @@ async function manejarGoogle() {
     this.innerHTML = '<span style="opacity:.6">Connecting...</span>';
 
     try {
-        const { iniciarSesionConGoogle } = await import('/Besori.en/includes/firebase.js');
+        const { iniciarSesionConGoogle } = await import('/includes/firebase.js');
         const resultado = await iniciarSesionConGoogle();
 
         if (resultado.redirecting) return;
@@ -695,7 +695,7 @@ async function manejarGoogle() {
             } else {
                 cerrarModal('modal-auth');
                 mostrarNotificacion('Connected with Google!', 'exito');
-                const { obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+                const { obtenerDatosUsuario } = await import('/includes/firebase.js');
                 const { data } = await obtenerDatosUsuario(resultado.user.uid);
                 const nombre = data?.nombre || resultado.user.displayName || resultado.user.email.split('@')[0];
                 actualizarMenuUsuario(resultado.user, nombre, data);
@@ -717,7 +717,7 @@ document.getElementById('btn-google-registro').addEventListener('click', manejar
 // ==================== AUTH OBSERVER ====================
 
 (async function() {
-    const { observarEstadoAutenticacion, obtenerDatosUsuario, cerrarSesion } = await import('/Besori.en/includes/firebase.js');
+    const { observarEstadoAutenticacion, obtenerDatosUsuario, cerrarSesion } = await import('/includes/firebase.js');
     window._mfaEnProceso = false;
     window._verificacionPendiente = false;
 
@@ -771,7 +771,7 @@ function abrirModalPerfil() {
 
 document.getElementById('btn-perfil-password').addEventListener('click', async () => {
     if (!_usuarioActual) return;
-    const { enviarRecuperacionPassword } = await import('/Besori.en/includes/firebase.js');
+    const { enviarRecuperacionPassword } = await import('/includes/firebase.js');
     const r = await enviarRecuperacionPassword(_usuarioActual.email);
     cerrarModal('modal-perfil');
     if (r.success) mostrarNotificacion('Recovery email sent. Check your inbox.', 'exito');
@@ -782,7 +782,7 @@ document.getElementById('btn-perfil-mfa').addEventListener('click', async () => 
     if (!_usuarioActual) return;
     cerrarModal('modal-perfil');
     if (_datosActuales?.mfaConfigurado) {
-        const { desactivarMfa, obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { desactivarMfa, obtenerDatosUsuario } = await import('/includes/firebase.js');
         const r = await desactivarMfa(_usuarioActual.uid);
         if (r.success) {
             const { data } = await obtenerDatosUsuario(_usuarioActual.uid);
@@ -796,7 +796,7 @@ document.getElementById('btn-perfil-mfa').addEventListener('click', async () => 
 });
 
 document.getElementById('btn-perfil-cerrar-sesion').addEventListener('click', async () => {
-    const { cerrarSesion } = await import('/Besori.en/includes/firebase.js');
+    const { cerrarSesion } = await import('/includes/firebase.js');
     const r = await cerrarSesion();
     if (r.success) {
         cerrarModal('modal-perfil');
@@ -829,21 +829,21 @@ function cancelarVerificacionSiPendiente() {
     window._verificacionPendiente = false;
     window._mfaEnProceso = false;
     ocultarVistaVerificacion();
-    import('/Besori.en/includes/firebase.js').then(({ cerrarSesion }) => cerrarSesion());
+    import('/includes/firebase.js').then(({ cerrarSesion }) => cerrarSesion());
 }
 
 let _pollingInterval = null;
 function iniciarPollingVerificacion() {
     if (_pollingInterval) clearInterval(_pollingInterval);
     _pollingInterval = setInterval(async () => {
-        const { recargarUsuario, obtenerDatosUsuario } = await import('/Besori.en/includes/firebase.js');
+        const { recargarUsuario, obtenerDatosUsuario } = await import('/includes/firebase.js');
         const user = await recargarUsuario();
         if (user && user.emailVerified) {
             clearInterval(_pollingInterval);
             _pollingInterval = null;
             window._verificacionPendiente = false;
             window._mfaEnProceso = false;
-            const { activarPersistenciaLocal } = await import('/Besori.en/includes/firebase.js');
+            const { activarPersistenciaLocal } = await import('/includes/firebase.js');
             await activarPersistenciaLocal();
             ocultarVistaVerificacion();
             cerrarModal('modal-auth');
@@ -856,7 +856,7 @@ function iniciarPollingVerificacion() {
 }
 
 document.getElementById('btn-reenviar-verificacion').addEventListener('click', async () => {
-    const { reenviarVerificacion } = await import('/Besori.en/includes/firebase.js');
+    const { reenviarVerificacion } = await import('/includes/firebase.js');
     const r = await reenviarVerificacion();
     if (r.success) mostrarNotificacion('Email resent. Check your inbox.', 'exito');
     else mostrarNotificacion(r.error || 'Error resending', 'error');
@@ -865,7 +865,7 @@ document.getElementById('btn-reenviar-verificacion').addEventListener('click', a
 document.getElementById('btn-olvidaste-password').addEventListener('click', async () => {
     const email = document.getElementById('login-email').value.trim();
     if (!email) { mostrarNotificacion('Enter your email address first', 'info'); return; }
-    const { enviarRecuperacionPassword } = await import('/Besori.en/includes/firebase.js');
+    const { enviarRecuperacionPassword } = await import('/includes/firebase.js');
     const r = await enviarRecuperacionPassword(email);
     if (r.success) mostrarNotificacion('Recovery email sent. Check your inbox.', 'exito');
     else mostrarNotificacion(r.error, 'error');
