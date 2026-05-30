@@ -11,12 +11,14 @@
 }
 
 .error-code {
-    font-family: "Doto", sans-serif;
-    font-size: 14rem;
+    font-family: "Nunito", sans-serif;
+    font-size: 12rem;
+    font-weight: 700;
     color: var(--azul);
     line-height: 1;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     animation: floatCode 3s ease-in-out infinite;
+    letter-spacing: -0.03em;
 }
 
 @keyframes floatCode {
@@ -25,8 +27,9 @@
 }
 
 .error-subtitle {
-    font-family: "Doto", sans-serif;
-    font-size: 3rem;
+    font-family: "Nunito", sans-serif;
+    font-size: 2.8rem;
+    font-weight: 600;
     color: var(--negro);
     margin-bottom: 1rem;
 }
@@ -44,19 +47,19 @@
     align-items: center;
     gap: 0.8rem;
     padding: 1.2rem 3rem;
-    background: var(--azul);
+    background: var(--negro);
     color: var(--blanco);
     text-decoration: none;
     border-radius: 50px;
+    font-family: "Nunito", sans-serif;
     font-size: 1.6rem;
     font-weight: 600;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(53, 119, 177, 0.3);
+    transition: all var(--transicion);
 }
 
 .error-link:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(53, 119, 177, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra_elevada);
 }
 
 .error-link svg {
