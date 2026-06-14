@@ -576,6 +576,21 @@ section {
     color: #ff8c00;
 }
 
+.titulo_ico.verde {
+    background: rgba(42, 157, 110, 0.14);
+    color: #2a9d6e;
+}
+
+.titulo_ico.teal {
+    background: rgba(14, 148, 162, 0.13);
+    color: #0e94a2;
+}
+
+.titulo_ico.slate {
+    background: rgba(71, 85, 105, 0.12);
+    color: #475569;
+}
+
 .titulo_ico svg {
     width: 2.4rem;
     height: 2.4rem;
@@ -645,6 +660,13 @@ section {
   gap: 1.8rem;
 }
 
+.producto-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
 .image-container {
   perspective: 1200px;
   flex: 0 0 auto;
@@ -709,6 +731,35 @@ section {
 
 .estado-badge--naranja::before {
   background: #ff8c00;
+}
+
+.estado-badge--morado {
+  background: rgba(120, 87, 178, 0.15);
+  color: #7857b2;
+}
+
+.estado-badge--morado::before {
+  background: #7857b2;
+}
+
+.estado-badge--azul {
+  background: rgba(53, 119, 177, 0.15);
+  color: #2b6fa8;
+}
+
+.estado-badge--azul::before {
+  background: #3577b1;
+}
+
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  background: rgba(71, 85, 105, 0.1);
+  color: #475569;
 }
 
 .producto-card__desc {
@@ -1138,6 +1189,23 @@ section {
     .estado-badge {
         font-size: 1.1rem;
         padding: 0.2rem 0.8rem;
+        order: 0;
+    }
+
+    .producto-card__badges::after {
+        content: '';
+        flex-basis: 100%;
+        height: 0;
+        order: 1;
+    }
+
+    .producto-card__badges .tech-badge {
+        order: 2;
+    }
+
+    .tech-badge {
+        font-size: 1.1rem;
+        padding: 0.2rem 0.6rem;
     }
 
     footer {
