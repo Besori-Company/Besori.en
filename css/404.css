@@ -23,18 +23,18 @@
 
 .error-code span {
     display: inline-block;
-    animation: botar 7s infinite;
+    animation: botar 6s infinite;
     animation-fill-mode: both;
 }
 
 .error-code span:nth-child(1) { animation-delay: 0s; }
-.error-code span:nth-child(2) { animation-delay: -6.3s; }
-.error-code span:nth-child(3) { animation-delay: -5.6s; }
+.error-code span:nth-child(2) { animation-delay: -5.3s; }
+.error-code span:nth-child(3) { animation-delay: -4.6s; }
 
 @keyframes botar {
     0%   { transform: translateY(0);     animation-timing-function: ease-in-out; }
-    12%  { transform: translateY(-11px); animation-timing-function: ease-in-out; }
-    25%  { transform: translateY(0); }
+    10%  { transform: translateY(-11px); animation-timing-function: ease-in-out; }
+    20%  { transform: translateY(0); }
     100% { transform: translateY(0); }
 }
 
