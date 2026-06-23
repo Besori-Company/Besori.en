@@ -1,54 +1,46 @@
 .error-section {
-    text-align: center;
-    padding: 6rem 2rem 8rem;
-    min-height: 40vh;
+    padding: 8rem 4rem;
+    min-height: 55vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: 0;
-    border-radius: 0.5rem 0.5rem 1.5rem 1.5rem;
 }
 
-.error-hero {
+.error-content {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
-    transform: translateX(-90px);
+    gap: 6rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.error-text {
+    flex: 1;
+}
+
+.error-heading {
+    font-family: "Nunito", sans-serif;
+    font-size: 4.8rem;
+    line-height: 1.15;
+    margin-bottom: 2rem;
 }
 
 .error-code {
-    font-family: "Nunito", sans-serif;
-    font-size: 20rem;
     font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.03em;
-    color: var(--azul);
-}
-
-.error-subtitle {
-    font-family: "Nunito", sans-serif;
-    font-size: 2.8rem;
-    font-weight: 600;
     color: var(--negro);
-    margin: 0 0 1.5rem;
 }
 
-.error-img {
-    width: 180px;
-}
-
-.error-img--mobile {
-    display: none;
+.error-tagline {
+    font-weight: 300;
+    color: var(--negro_claro);
 }
 
 .error-message {
     font-size: 1.8rem;
     color: var(--negro_claro);
-    max-width: 450px;
-    line-height: 1.5;
-    margin-bottom: 3rem;
+    max-width: 400px;
+    line-height: 1.6;
+    margin-bottom: 3.5rem;
 }
 
 .error-link {
@@ -81,40 +73,38 @@
     transform: translateX(-3px);
 }
 
+.error-img {
+    width: 300px;
+    flex: 0 0 auto;
+}
+
 @media (max-width: 750px) {
-    .error-hero {
-        transform: none;
+    .error-section {
+        padding: 5rem 2rem 7rem;
     }
 
-    .error-hero .error-img {
-        display: none;
+    .error-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2.5rem;
     }
 
-    .error-img--mobile {
-        display: block;
-        width: 160px;
-        margin-bottom: 1.5rem;
-    }
-
-    .error-code {
-        font-size: 15rem;
-    }
-
-    .error-subtitle {
-        font-size: 2.2rem;
+    .error-heading {
+        font-size: 3.5rem;
     }
 
     .error-message {
-        font-size: 1.5rem;
+        max-width: 100%;
+        font-size: 1.6rem;
+    }
+
+    .error-img {
+        width: 200px;
     }
 }
 
 @media (max-width: 380px) {
-    .error-code {
-        font-size: 10rem;
-    }
-
-    .error-subtitle {
-        font-size: 1.8rem;
+    .error-heading {
+        font-size: 2.8rem;
     }
 }
