@@ -3,6 +3,8 @@
     min-height: 55vh;
     display: flex;
     align-items: center;
+    border-bottom-right-radius: var(--radio_grande);
+    border-bottom-left-radius: var(--radio_grande);
 }
 
 .error-content {
