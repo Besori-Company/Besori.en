@@ -136,6 +136,12 @@
 }
 
 /* ==================== CTA ==================== */
+.nosotros-cta-wrap {
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
 .nosotros-cta {
     display: inline-flex;
     align-items: center;
@@ -147,10 +153,7 @@
     font-size: 1.6rem;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.25s ease;
-    margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(20px);
+    transition: all var(--transicion);
 }
 
 .nosotros-cta:hover {
