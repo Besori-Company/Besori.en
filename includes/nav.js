@@ -51,6 +51,12 @@ document.getElementById("nav-placeholder").innerHTML = `
                 <div class="form_extras">
                     <button type="button" class="btn_link_inline" id="btn-olvidaste-password">Forgot your password?</button>
                 </div>
+                <div class="form_grupo">
+                    <label class="checkbox_label">
+                        <input type="checkbox" id="terminos-login">
+                        <span class="checkbox_texto">I accept the <a href="/pages/terms.html" class="link_terminos">terms and conditions</a></span>
+                    </label>
+                </div>
                 <button type="submit" class="btn_submit">Sign In</button>
                 <div class="auth_divider"><span>or continue with</span></div>
                 <div class="auth_redes">
@@ -102,7 +108,7 @@ document.getElementById("nav-placeholder").innerHTML = `
                 </div>
                 <div class="form_grupo">
                     <label class="checkbox_label">
-                        <input type="checkbox" id="terminos" required>
+                        <input type="checkbox" id="terminos">
                         <span class="checkbox_texto">I accept the <a href="/pages/terms.html" class="link_terminos">terms and conditions</a></span>
                     </label>
                 </div>
@@ -601,6 +607,12 @@ document.getElementById('btn-cancelar-mfa-login').addEventListener('click', asyn
 
 document.getElementById('form-login').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!document.getElementById('terminos-login').checked) {
+        mostrarNotificacion('You must accept the terms and conditions', 'error');
+        return;
+    }
+
     const email = document.getElementById('login-email').value;
     const password = document.getElementById('login-password').value;
 
@@ -644,6 +656,7 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
     const password = document.getElementById('registro-password').value;
     const passwordConfirmar = document.getElementById('registro-password-confirmar').value;
 
+    if (!document.getElementById('terminos').checked) { mostrarNotificacion('You must accept the terms and conditions', 'error'); return; }
     if (password !== passwordConfirmar) { mostrarNotificacion('Passwords do not match', 'error'); return; }
 
     const btn = e.target.querySelector('.btn_submit');
@@ -678,13 +691,11 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
 // ==================== GOOGLE ====================
 
 async function manejarGoogle() {
-    if (this.id === 'btn-google-registro') {
-        const terminos = document.getElementById('terminos');
-        if (!terminos.checked) {
-            terminos.reportValidity();
-            mostrarNotificacion('You must accept the terms and conditions', 'error');
-            return;
-        }
+    const terminosId = this.id === 'btn-google-registro' ? 'terminos' : 'terminos-login';
+    const terminos = document.getElementById(terminosId);
+    if (terminos && !terminos.checked) {
+        mostrarNotificacion('You must accept the terms and conditions', 'error');
+        return;
     }
 
     this.disabled = true;
