@@ -1,0 +1,40 @@
+name: Sync HyprDesk version
+
+on:
+  # Hourly
+  schedule:
+    - cron: '17 * * * *'
+  # Manual button in the Actions tab
+  workflow_dispatch:
+  # Instant notice from the HyprDesk repo when a release is published
+  repository_dispatch:
+    types: [hyprdesk-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-hyprdesk
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update the site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/sync-hyprdesk.py
+
+      - name: Publish if changed
+        run: |
+          if git diff --quiet; then
+            echo "Nothing to publish."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Update HyprDesk version on the site"
+          git push

@@ -4,6 +4,7 @@ document.getElementById("nav-placeholder").innerHTML = `
         <div class="nav_contenedor">
             <div class="nav_enlaces">
                 <a href="/index.html">Home</a>
+                <a href="/pages/catalog.html">Catalog</a>
                 <a href="/pages/aboutus.html">About us</a>
             </div>
 

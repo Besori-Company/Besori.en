@@ -61,6 +61,17 @@
         },
         {
           "@type": "SoftwareApplication",
+          "name": "HyprDesk",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Linux",
+          "url": "https://en.besoricompany.com/pages/hyprdesk.html",
+          "softwareVersion": "1.0.3",
+          "description": "Native settings panel for Hyprland. Control brightness, night mode, monitors, window opacity and user profile.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+          "author": { "@id": "https://besoricompany.com/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
           "name": "Besori Cloud",
           "applicationCategory": "UtilitiesApplication",
           "operatingSystem": "Web",
@@ -96,49 +107,65 @@
     <div id="nav-placeholder"></div>
 
     <main>
-        <section class="producto" aria-labelledby="Collection">
-          <h2 id="Collection" class="titulo">
-            <span class="titulo_ico azul"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
-            Projects
+        <section class="catalogo-teaser" aria-labelledby="catalogo-titulo">
+          <h2 id="catalogo-titulo" class="titulo">
+            <span class="titulo_ico naranja"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>
+            Catalog
           </h2>
-          <div class="productos-list">
-
-            <article class="producto-card cloud">
-              <div class="producto-card__info">
-                <div class="producto-card__header">
-                  <div class="image-container">
-                    <img class="icono image-3d reset" src="img/iconos_productos/ico_Cloud.webp" alt="Icon Besori Cloud">
-                  </div>
-                  <h3 class="producto-card__nombre">Besori Cloud</h3>
-                </div>
-                <div class="producto-card__badges">
-                  <span class="estado-badge estado-badge--verde">In development</span>
-                  <span class="tech-badge">Python</span>
-                  <span class="tech-badge">SQLite</span>
-                  <span class="tech-badge">HTTPS</span>
-                </div>
-                <p class="producto-card__desc">Web-based file manager. Store and organize files on your own computers or servers.</p>
+          <div class="ct-main">
+            <div class="ct-canvas">
+              <div class="ct-bg"></div>
+              <img class="ct-ico ct-ico--hd"    src="img/iconos_productos/ico_HyprDesk.webp" alt="HyprDesk">
+              <img class="ct-ico ct-ico--kael"  src="img/iconos_productos/ico_Kael.webp"     alt="Kael">
+              <img class="ct-ico ct-ico--cloud" src="img/iconos_productos/ico_Cloud.webp"    alt="Besori Cloud">
+            </div>
+            <div class="ct-footer">
+              <div class="ct-footer__texto">
+                <p class="ct-footer__titulo">Explore our catalog</p>
+                <p class="ct-footer__desc">Here we showcase all our programs, everything Besori has released for you to use, plus what is coming next.</p>
               </div>
-            </article>
+              <a href="pages/catalog.html" class="ct-footer__btn">
+                View catalog
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17l9.2-9.2"/><path d="M17 17V8h-9"/></svg>
+              </a>
+            </div>
+          </div>
+        </section>
 
-            <article class="producto-card kael">
-              <div class="producto-card__info">
-                <div class="producto-card__header">
-                  <div class="image-container">
-                    <img class="icono image-3d reset" src="img/iconos_productos/ico_Kael.webp" alt="Icon Kael">
-                  </div>
-                  <h3 class="producto-card__nombre">Kael</h3>
-                </div>
-                <div class="producto-card__badges">
-                  <span class="estado-badge estado-badge--naranja">In development</span>
-                  <span class="tech-badge">Python</span>
-                  <span class="tech-badge">Ollama</span>
-                  <span class="tech-badge">Cross-platform</span>
-                </div>
-                <p class="producto-card__desc">Local and online model orchestrator and agent with window and system control.</p>
+        <section class="novedades_section" aria-labelledby="Novedades">
+          <h2 id="Novedades" class="titulo">
+            <span class="titulo_ico azul"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></span>
+            What's new
+          </h2>
+          <div class="novedades">
+            <a href="/pages/hyprdesk.html" class="tool-card hyprdesk has-media">
+              <div class="card-media">
+                <img src="img/hyprdesk/PerfilUsuario.webp" alt="HyprDesk screenshot showing the profile section" loading="lazy">
+                <span class="tipo-chip tipo-chip--herramienta">
+                  <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                  Tool
+                </span>
               </div>
-            </article>
-
+              <div class="tool-card__info">
+                <div class="tool-card__header">
+                  <div class="image-container">
+                    <img class="icono image-3d reset" src="img/iconos_productos/ico_HyprDesk.webp" alt="Icon HyprDesk">
+                  </div>
+                  <h3 class="tool-card__nombre">HyprDesk</h3>
+                </div>
+                <div class="tool-card__badges">
+                  <span class="estado-badge estado-badge--azul">Available</span>
+                  <span class="tech-badge">Rust</span>
+                  <span class="tech-badge">iced</span>
+                  <span class="tech-badge">Wayland</span>
+                </div>
+                <p class="tool-card__desc">Native settings panel for Hyprland. Control brightness, night mode, monitors, window opacity and your user profile from a clean, modern interface.</p>
+                <span class="tool-card__link">
+                  Discover
+                  <svg viewBox="0 0 24 24" width="16" height="16"><path d="M7 17l9.2-9.2"/><path d="M17 17V8h-9"/></svg>
+                </span>
+              </div>
+            </a>
           </div>
         </section>
 
@@ -211,7 +238,7 @@
                     <p class="canal-card__desc">News and dev art</p>
                 </a>
 
-                <a href="#Collection" class="canal-card canal-card--playstore">
+                <a href="pages/catalog.html" class="canal-card canal-card--playstore">
                     <div class="canal-card__top">
                         <div class="canal-card__icono">
                             <svg viewBox="0 0 24 24" width="28" height="28" fill="none"><circle cx="8" cy="7.5" r="3.8" fill="#4285F4" opacity="0.85"/><path d="M11,6 L17.5,12 L11,18Z" fill="#34A853" opacity="0.9"/><rect x="3.5" y="13" width="5.2" height="5.2" rx="0.8" fill="#FBBC04" opacity="0.85" transform="rotate(-15 6.1 15.6)"/><circle cx="17.5" cy="17" r="2.8" fill="#EA4335" opacity="0.8"/></svg>
