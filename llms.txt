@@ -10,7 +10,7 @@
 
 ## Products
 
-- **HyprDesk**: native settings panel for Hyprland (Wayland), built in Rust with iced. Control brightness, night mode, monitors, window opacity and user profile without editing configuration files. Available (v1.0.3): https://en.besoricompany.com/pages/hyprdesk.html
+- **HyprDesk**: native settings panel for Hyprland (Wayland), built in Rust with iced. Control brightness, night mode, monitors, window opacity and user profile without editing configuration files. Available (v1.0.4): https://en.besoricompany.com/pages/hyprdesk.html
 - **Besori Cloud**: web-based file manager. Store and organise files on your own devices or servers. Currently in development.
 - **Kael**: orchestrator and agent for local and online AI models, with window and system control. Currently in development.
 
