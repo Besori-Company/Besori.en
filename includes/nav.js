@@ -276,14 +276,6 @@ document.getElementById("nav-placeholder").innerHTML = `
         .btn_link { display: block; width: 100%; text-align: center; background: none; border: none; color: #666; cursor: pointer; font-size: 1.4rem; margin-top: 1rem; padding: 0.8rem; }
         .btn_link:hover { color: #3577b1; text-decoration: underline; }
         .form_extras { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-        .menu_usuario { position: absolute; top: 100%; right: 0; margin-top: 8px; background: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 12px; min-width: 200px; display: none; z-index: 1000; }
-        .menu_usuario.activo { display: block; }
-        .menu_usuario_info { padding: 8px; margin-bottom: 8px; }
-        .menu_usuario_info strong { display: block; margin-bottom: 4px; font-size: 1.4rem; }
-        .menu_usuario_info small { color: #666; font-size: 1.2rem; display: block; }
-        .menu_usuario hr { border: none; border-top: 1px solid #e5e7eb; margin: 8px 0; }
-        .menu_usuario_item { display: block; padding: 10px 12px; color: #374151; text-decoration: none; border-radius: 4px; transition: background 0.2s; font-size: 1.3rem; }
-        .menu_usuario_item:hover { background: #f3f4f6; }
         .nav_contenedor { position: relative; }
         .btn_link_inline { background: none; border: none; color: #3577b1; cursor: pointer; font-size: 1.4rem; padding: 0; }
         .btn_link_inline:hover { text-decoration: underline; }

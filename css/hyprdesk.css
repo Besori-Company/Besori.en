@@ -94,17 +94,6 @@
     box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 
-.hd-hero__btn--outline {
-    background: transparent;
-    color: var(--negro);
-    border-color: rgba(0,0,0,0.18);
-}
-
-.hd-hero__btn--outline:hover {
-    background: #ffffff;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-}
-
 .hd-hero__btn svg {
     width: 17px;
     height: 17px;
