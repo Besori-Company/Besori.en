@@ -1,0 +1,361 @@
+/* ==================== MFA ==================== */
+.modal_mfa {
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal_mfa_login {
+    max-width: 380px;
+    text-align: center;
+}
+
+.mfa_header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.mfa_icon_wrap {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.mfa_subtitulo {
+    color: #666;
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+    line-height: 1.5;
+}
+
+.mfa_pasos {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.mfa_paso {
+    display: flex;
+    gap: 1.4rem;
+    align-items: flex-start;
+}
+
+.paso_numero {
+    min-width: 3rem;
+    height: 3rem;
+    background: #3577b1;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+}
+
+.paso_contenido h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.apps_lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.app_chip {
+    background: #e8f0fb;
+    color: #3577b1;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 1.2rem;
+}
+
+.qr_container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+
+.qr_loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    color: #666;
+    font-size: 1.3rem;
+}
+
+.spinner_mfa {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid #e8f0fb;
+    border-top-color: #3577b1;
+    border-radius: 50%;
+    animation: spinMfa 0.8s linear infinite;
+}
+
+@keyframes spinMfa {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+#qr-code-div img, #qr-code-div canvas {
+    border-radius: 8px;
+}
+
+.clave_manual_wrap {
+    margin-top: 1rem;
+    font-size: 1.3rem;
+}
+
+.clave_manual_wrap summary {
+    cursor: pointer;
+    color: #3577b1;
+}
+
+.clave_manual {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.8rem;
+    background: #f3f4f6;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+}
+
+.clave_manual code {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    flex: 1;
+    word-break: break-all;
+}
+
+.btn_copiar {
+    background: #3577b1;
+    color: white;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    white-space: nowrap;
+}
+
+.btn_copiar:hover {
+    background: #2a5f96;
+}
+
+.codigo_totp_input {
+    text-align: center !important;
+    font-size: 2.4rem !important;
+    letter-spacing: 0.4em;
+    font-weight: bold;
+}
+
+.mfa_error {
+    background: #fef2f2;
+    border-left: 4px solid #ef4444;
+    color: #dc2626;
+    padding: 1rem 1.4rem;
+    border-radius: 6px;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+}
+
+.mfa_nota {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-top: 1.5rem;
+}
+
+
+/* ==================== FORMS ==================== */
+.btn_link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 1.4rem;
+    margin-top: 1rem;
+    padding: 0.8rem;
+}
+
+.btn_link:hover {
+    color: #3577b1;
+    text-decoration: underline;
+}
+
+.form_extras {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn_link_inline {
+    background: none;
+    border: none;
+    color: #3577b1;
+    cursor: pointer;
+    font-size: 1.4rem;
+    padding: 0;
+}
+
+.btn_link_inline:hover {
+    text-decoration: underline;
+}
+
+
+/* ==================== EMAIL VERIFICATION ==================== */
+.verificacion_icono {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.spinner_verificacion {
+    width: 3rem;
+    height: 3rem;
+    border: 3px solid #e8f0fb;
+    border-top-color: #3577b1;
+    border-radius: 50%;
+    animation: spinMfa 0.8s linear infinite;
+    margin: 1.5rem auto;
+}
+
+
+/* ==================== PROFILE ==================== */
+.modal_perfil_contenido {
+    max-width: 380px;
+    text-align: center;
+}
+
+.perfil_avatar {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    background: #3577b1;
+    color: white;
+    font-size: 3rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-family: "Nunito", sans-serif;
+}
+
+.perfil_nombre_texto {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.perfil_email_texto {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 2.5rem;
+}
+
+.perfil_opciones {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    text-align: left;
+}
+
+.perfil_opcion {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.2rem 1.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: #374151;
+    transition: background 0.2s, border-color 0.2s;
+    width: 100%;
+}
+
+.perfil_opcion:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.perfil_opcion_peligro {
+    color: #ef4444;
+    border-color: #fecaca;
+}
+
+.perfil_opcion_peligro:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+}
+
+.perfil_mfa_activo {
+    color: #10b981 !important;
+    border-color: #a7f3d0 !important;
+}
+
+.perfil_mfa_activo:hover {
+    background: #f0fdf4 !important;
+}
+
+/* ==================== NOTIFICATIONS ==================== */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 16px 24px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+    z-index: 10000;
+    max-width: 400px;
+    font-size: 1.4rem;
+    animation: slideIn .3s ease-out;
+}
+
+.notificacion_exito {
+    border-left: 4px solid #10b981;
+}
+
+.notificacion_error {
+    border-left: 4px solid #ef4444;
+}
+
+.notificacion_info {
+    border-left: 4px solid #3b82f6;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+}

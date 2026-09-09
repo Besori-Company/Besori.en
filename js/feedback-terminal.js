@@ -1,4 +1,3 @@
-// Terminal decorativa: logo Besori en ASCII art
 (function () {
   const el = document.getElementById('term-art');
   if (!el) return;
