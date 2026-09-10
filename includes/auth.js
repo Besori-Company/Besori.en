@@ -4,8 +4,10 @@ document.body.insertAdjacentHTML('beforeend', `
     <div class="modal_overlay" id="modal-auth">
         <div class="modal_contenido">
             <button class="modal_cerrar" id="cerrar-modal-auth" aria-label="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="6.1" cy="6.1" r="2.2"/><circle cx="17.9" cy="6.1" r="2.2"/>
+                    <circle cx="12" cy="12" r="2.2"/>
+                    <circle cx="6.1" cy="17.9" r="2.2"/><circle cx="17.9" cy="17.9" r="2.2"/>
                 </svg>
             </button>
             <div class="auth_tabs">
@@ -199,8 +201,10 @@ document.body.insertAdjacentHTML('beforeend', `
     <div class="modal_overlay" id="modal-perfil">
         <div class="modal_contenido modal_perfil_contenido">
             <button class="modal_cerrar" id="cerrar-modal-perfil" aria-label="Close">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <circle cx="6.1" cy="6.1" r="2.2"/><circle cx="17.9" cy="6.1" r="2.2"/>
+                    <circle cx="12" cy="12" r="2.2"/>
+                    <circle cx="6.1" cy="17.9" r="2.2"/><circle cx="17.9" cy="17.9" r="2.2"/>
                 </svg>
             </button>
             <div id="perfil-avatar" class="perfil_avatar">U</div>

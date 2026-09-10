@@ -156,20 +156,20 @@
 
 .hd-descargas__menu {
     display: none;
-    position: absolute;
-    top: calc(100% + 0.8rem);
-    left: 0;
-    z-index: 20;
+    position: fixed;
+    z-index: 90;
     width: 31rem;
     max-width: calc(100vw - 4rem);
     padding: 0.6rem;
-    background: var(--blanco);
-    border: 1px solid rgba(0, 0, 0, 0.09);
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(26px) saturate(180%);
+    -webkit-backdrop-filter: blur(26px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 1.2rem;
-    box-shadow: 0 10px 30px -6px rgba(20, 28, 40, 0.18);
+    box-shadow: var(--sombra_elevada);
 }
 
-.hd-descargas.is-open .hd-descargas__menu {
+.hd-descargas__menu.is-open {
     display: block;
     animation: hd-descargas-in 0.14s ease-out;
 }
@@ -204,7 +204,7 @@
 
 .hd-descargas__item:hover,
 .hd-descargas__item:focus-visible {
-    background: #f4f6f8;
+    background: rgba(10, 10, 10, 0.05);
     outline: none;
 }
 
@@ -287,7 +287,7 @@
 
 .hd-descargas__todas:hover,
 .hd-descargas__todas:focus-visible {
-    background: #f4f6f8;
+    background: rgba(10, 10, 10, 0.05);
     color: var(--negro);
     outline: none;
 }
@@ -308,9 +308,6 @@
         width: 100%;
     }
 
-    .hd-descargas__menu {
-        width: 100%;
-    }
 }
 
 /* ==================== FEATURES ==================== */

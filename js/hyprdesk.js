@@ -38,25 +38,48 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarLightb
 
 const descargas = document.querySelector('.hd-descargas');
 const descargasToggle = descargas.querySelector('.hd-descargas__toggle');
+const descargasMenu = descargas.querySelector('.hd-descargas__menu');
+
+document.body.appendChild(descargasMenu);
+
+function colocarDescargas() {
+    const r = descargasToggle.getBoundingClientRect();
+    descargasMenu.style.top = `${r.bottom + 8}px`;
+    descargasMenu.style.left = `${r.left}px`;
+    descargasMenu.style.minWidth = `${r.width}px`;
+}
+
+function abrirDescargas(abrir) {
+    if (abrir) colocarDescargas();
+    descargas.classList.toggle('is-open', abrir);
+    descargasMenu.classList.toggle('is-open', abrir);
+    descargasToggle.setAttribute('aria-expanded', abrir ? 'true' : 'false');
+}
 
 function cerrarDescargas() {
-    descargas.classList.remove('is-open');
-    descargasToggle.setAttribute('aria-expanded', 'false');
+    abrirDescargas(false);
 }
 
 descargasToggle.addEventListener('click', e => {
     e.stopPropagation();
-    const abierto = descargas.classList.toggle('is-open');
-    descargasToggle.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+    abrirDescargas(!descargas.classList.contains('is-open'));
 });
 
 document.addEventListener('click', e => {
-    if (!descargas.contains(e.target)) cerrarDescargas();
+    if (!descargas.contains(e.target) && !descargasMenu.contains(e.target)) cerrarDescargas();
 });
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarDescargas(); });
 
-descargas.querySelectorAll('.hd-descargas__item').forEach(item => {
+window.addEventListener('scroll', () => {
+    if (descargas.classList.contains('is-open')) colocarDescargas();
+}, { passive: true });
+
+window.addEventListener('resize', () => {
+    if (descargas.classList.contains('is-open')) colocarDescargas();
+});
+
+descargasMenu.querySelectorAll('.hd-descargas__item').forEach(item => {
     item.addEventListener('click', cerrarDescargas);
 });
 
