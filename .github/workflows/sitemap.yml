@@ -1,0 +1,39 @@
+name: Regenerate sitemap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'pages/**.html'
+      - 'scripts/gen-sitemap.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sitemap
+  cancel-in-progress: false
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate sitemap.xml
+        run: python3 scripts/gen-sitemap.py
+
+      - name: Publish if changed
+        run: |
+          if git diff --quiet; then
+            echo "No changes in the sitemap."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "Regenerate sitemap.xml"
+          git push
