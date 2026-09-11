@@ -1,39 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
   <url>
     <loc>https://en.besoricompany.com/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
-  </url>
-
-  <url>
-    <loc>https://en.besoricompany.com/pages/catalog.html</loc>
-    <lastmod>2026-08-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-  <url>
-    <loc>https://en.besoricompany.com/pages/hyprdesk.html</loc>
-    <lastmod>2026-08-31</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori-Alta-resol.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_HyprDesk.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_Kael.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_Cloud.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/PerfilUsuario.webp</image:loc></image:image>
+    <image:image><image:loc>https://besoricompany.com/banner.png</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://en.besoricompany.com/pages/aboutus.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-09-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori-Alta-resol.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/nosotros/logo_besori_bessie.webp</image:loc></image:image>
+    <image:image><image:loc>https://besoricompany.com/banner.png</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://en.besoricompany.com/pages/catalog.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori-Alta-resol.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_HyprDesk.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_Cloud.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/iconos_productos/ico_Kael.webp</image:loc></image:image>
+    <image:image><image:loc>https://besoricompany.com/banner.png</image:loc></image:image>
+  </url>
+
+  <url>
+    <loc>https://en.besoricompany.com/pages/hyprdesk.html</loc>
+    <lastmod>2026-09-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori-Alta-resol.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/hyprdesk.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/Brillo.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/Temperatura.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/Monitores.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/Opacidad.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/hyprdesk/Perfil.webp</image:loc></image:image>
+    <image:image><image:loc>https://besoricompany.com/img/hyprdesk/Banner.png</image:loc></image:image>
   </url>
 
   <url>
     <loc>https://en.besoricompany.com/pages/terms.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori.webp</image:loc></image:image>
+    <image:image><image:loc>https://en.besoricompany.com/img/header/Besori-Alta-resol.webp</image:loc></image:image>
+    <image:image><image:loc>https://besoricompany.com/banner.png</image:loc></image:image>
   </url>
 
 </urlset>
