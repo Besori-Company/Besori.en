@@ -1,6 +1,6 @@
-// ==================== MODALS ====================
+// ==================== MODALES ====================
 document.body.insertAdjacentHTML('beforeend', `
-    <!-- ===== AUTH MODAL ===== -->
+    <!-- ===== MODAL AUTH ===== -->
     <div class="modal_overlay" id="modal-auth">
         <div class="modal_contenido">
             <button class="modal_cerrar" id="cerrar-modal-auth" aria-label="Close">
@@ -57,7 +57,7 @@ document.body.insertAdjacentHTML('beforeend', `
                 </div>
             </form>
 
-            <!-- Sign Up -->
+            <!-- Registro -->
             <form class="auth_form" id="form-registro">
                 <h2 class="auth_titulo">Create a new account</h2>
                 <div class="form_grupo">
@@ -112,7 +112,7 @@ document.body.insertAdjacentHTML('beforeend', `
                 </div>
             </form>
 
-            <!-- ===== EMAIL VERIFICATION ===== -->
+            <!-- ===== VERIFICACIÓN EMAIL ===== -->
             <div id="vista-verificacion" style="display:none; text-align:center; padding:1rem 0;">
                 <div class="verificacion_icono">✉️</div>
                 <h2 class="auth_titulo">Check your email</h2>
@@ -124,7 +124,7 @@ document.body.insertAdjacentHTML('beforeend', `
         </div>
     </div>
 
-    <!-- ===== MFA SETUP MODAL ===== -->
+    <!-- ===== MODAL MFA SETUP ===== -->
     <div class="modal_overlay" id="modal-mfa-setup">
         <div class="modal_contenido modal_mfa">
             <div class="mfa_header">
@@ -180,7 +180,7 @@ document.body.insertAdjacentHTML('beforeend', `
         </div>
     </div>
 
-    <!-- ===== MFA LOGIN VERIFY MODAL ===== -->
+    <!-- ===== MODAL MFA VERIFICAR (login) ===== -->
     <div class="modal_overlay" id="modal-mfa-login">
         <div class="modal_contenido modal_mfa_login">
             <div class="mfa_header">
@@ -197,7 +197,7 @@ document.body.insertAdjacentHTML('beforeend', `
         </div>
     </div>
 
-    <!-- ===== PROFILE MODAL ===== -->
+    <!-- ===== MODAL PERFIL ===== -->
     <div class="modal_overlay" id="modal-perfil">
         <div class="modal_contenido modal_perfil_contenido">
             <button class="modal_cerrar" id="cerrar-modal-perfil" aria-label="Close">
@@ -228,7 +228,7 @@ document.body.insertAdjacentHTML('beforeend', `
     </div>
 `);
 
-// ==================== GLOBAL VARIABLES ====================
+// ==================== VARIABLES GLOBALES ====================
 let _totpSecretSetup = null;
 let _totpSecretLogin = null;
 let _usuarioSesionPendiente = null;
@@ -263,7 +263,7 @@ function soloNumeros(inputId) {
     if (el) el.addEventListener('input', function() { this.value = this.value.replace(/\D/g, ''); });
 }
 
-// ==================== TABS + SHOW PASSWORD ====================
+// ==================== TABS + VER CONTRASEÑA ====================
 document.querySelectorAll('.auth_tab').forEach(tab => {
     tab.addEventListener('click', () => {
         document.querySelectorAll('.auth_tab').forEach(t => t.classList.remove('auth_tab-activo'));
@@ -283,7 +283,7 @@ document.querySelectorAll('.btn_ver_password').forEach(btn => {
 soloNumeros('mfa-setup-codigo');
 soloNumeros('mfa-login-codigo');
 
-// Close modals
+// Cerrar modales
 document.getElementById('cerrar-modal-auth').addEventListener('click', () => cancelarVerificacionSiPendiente() || cerrarModal('modal-auth'));
 document.getElementById('modal-auth').addEventListener('click', e => { if (e.target.id === 'modal-auth') { cancelarVerificacionSiPendiente(); cerrarModal('modal-auth'); } });
 document.getElementById('cerrar-modal-perfil').addEventListener('click', () => cerrarModal('modal-perfil'));
@@ -301,7 +301,7 @@ document.getElementById('modal-mfa-setup').addEventListener('click', e => {
     if (e.target.id === 'modal-mfa-setup') document.getElementById('btn-mfa-despues').click();
 });
 
-// Account button
+// Botón cuenta
 document.querySelector('.btn_usuario').addEventListener('click', async (e) => {
     e.stopPropagation();
     const { auth } = await import('/includes/firebase.js');
@@ -312,7 +312,7 @@ document.querySelector('.btn_usuario').addEventListener('click', async (e) => {
     }
 });
 
-// ==================== MFA SETUP ====================
+// ==================== SETUP MFA ====================
 
 let _setupMfaEnCurso = false;
 async function iniciarSetupMfa() {
@@ -368,7 +368,7 @@ async function iniciarSetupMfa() {
     }
 }
 
-// Copy manual key
+// Copiar clave manual
 document.getElementById('btn-copiar-clave').addEventListener('click', () => {
     navigator.clipboard.writeText(document.getElementById('totp-secret-display').textContent).then(() => {
         const btn = document.getElementById('btn-copiar-clave');
@@ -377,7 +377,7 @@ document.getElementById('btn-copiar-clave').addEventListener('click', () => {
     });
 });
 
-// Enable MFA
+// Activar MFA
 document.getElementById('btn-activar-mfa').addEventListener('click', async () => {
     const codigo = document.getElementById('mfa-setup-codigo').value.trim();
     const errorDiv = document.getElementById('mfa-setup-error');
@@ -434,7 +434,7 @@ document.getElementById('btn-activar-mfa').addEventListener('click', async () =>
     }
 });
 
-// Set up later
+// Configurar más tarde
 document.getElementById('btn-mfa-despues').addEventListener('click', async () => {
     _totpSecretSetup = null;
     window._mfaEnProceso = false;
@@ -450,7 +450,7 @@ document.getElementById('btn-mfa-despues').addEventListener('click', async () =>
     mostrarNotificacion('You can enable two-step verification from your profile', 'info');
 });
 
-// ==================== MFA LOGIN VERIFY ====================
+// ==================== VERIFICAR MFA AL LOGIN ====================
 
 function mostrarVerificacionMfaLogin(totpSecret, user) {
     _totpSecretLogin = totpSecret;
@@ -512,7 +512,7 @@ document.getElementById('btn-cancelar-mfa-login').addEventListener('click', asyn
     abrirModal('modal-auth');
 });
 
-// ==================== LOGIN FORM ====================
+// ==================== FORMULARIO LOGIN ====================
 
 document.getElementById('form-login').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -556,7 +556,7 @@ document.getElementById('form-login').addEventListener('submit', async (e) => {
     }
 });
 
-// ==================== SIGN UP FORM ====================
+// ==================== FORMULARIO REGISTRO ====================
 
 document.getElementById('form-registro').addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -643,7 +643,7 @@ async function manejarGoogle() {
 document.getElementById('btn-google-login').addEventListener('click', manejarGoogle);
 document.getElementById('btn-google-registro').addEventListener('click', manejarGoogle);
 
-// ==================== AUTH OBSERVER ====================
+// ==================== OBSERVADOR AUTH ====================
 
 (async function() {
     const { observarEstadoAutenticacion, obtenerDatosUsuario, cerrarSesion } = await import('/includes/firebase.js');
@@ -666,7 +666,7 @@ document.getElementById('btn-google-registro').addEventListener('click', manejar
     });
 })();
 
-// ==================== USER PROFILE ====================
+// ==================== PERFIL USUARIO ====================
 
 let _usuarioActual = null;
 let _datosActuales = null;
@@ -737,7 +737,7 @@ document.getElementById('btn-perfil-cerrar-sesion').addEventListener('click', as
     }
 });
 
-// ==================== EMAIL VERIFICATION ====================
+// ==================== VERIFICACIÓN EMAIL ====================
 
 function mostrarVistaVerificacion(email) {
     document.getElementById('verificacion-email-dest').textContent = email;

@@ -111,7 +111,7 @@ export async function obtenerDatosUsuario(uid) {
     }
 }
 
-// ==================== AUTHENTICATION ====================
+// ==================== AUTENTICACIÓN ====================
 
 export async function activarPersistenciaLocal() {
     await setPersistence(auth, browserLocalPersistence);

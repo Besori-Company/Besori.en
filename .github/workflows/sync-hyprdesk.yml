@@ -1,12 +1,12 @@
-name: Sync HyprDesk version
+name: Sincronizar versión de HyprDesk
 
 on:
-  # Hourly
+  # Cada hora
   schedule:
     - cron: '17 * * * *'
-  # Manual button in the Actions tab
+  # Botón manual en la pestaña Actions
   workflow_dispatch:
-  # Instant notice from the HyprDesk repo when a release is published
+  # Aviso inmediato desde el repo de HyprDesk al publicar una release
   repository_dispatch:
     types: [hyprdesk-release]
 
@@ -23,18 +23,31 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update the site
+      - name: Actualizar el sitio
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 scripts/sync-hyprdesk.py
 
-      - name: Publish if changed
+      - name: Publicar si ha cambiado
         run: |
           if git diff --quiet; then
-            echo "Nothing to publish."
+            echo "Sin cambios que publicar."
             exit 0
           fi
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "Update HyprDesk version on the site"
+          git commit -am "Actualizar versión de HyprDesk en el sitio"
+          git push
+
+      # GitHub desactiva los workflows programados tras 60 días sin actividad
+      - name: Mantener activo el repo
+        run: |
+          dias=$(( ($(date +%s) - $(git log -1 --format=%ct)) / 86400 ))
+          if [ "$dias" -lt 50 ]; then
+            echo "Último commit hace $dias días, no hace falta."
+            exit 0
+          fi
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit --allow-empty -m "Mantener activos los workflows programados"
           git push

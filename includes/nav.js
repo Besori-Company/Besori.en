@@ -1,4 +1,4 @@
-// ==================== NAVIGATION ====================
+// ==================== NAVEGACIÓN ====================
 (() => {
     const ENLACES = [
         { texto: 'Home',     href: '/index.html' },

@@ -8,11 +8,11 @@ venv/
 # macOS
 .DS_Store
 
-# Editors / IDE
+# Editores / IDE
 .vscode/
 .idea/
 *.swp
 
-# Logs and temp files
+# Logs y temporales
 *.log
 *.tmp
