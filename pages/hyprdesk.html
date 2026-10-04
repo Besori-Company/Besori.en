@@ -177,6 +177,10 @@
                         <span>Monitors and opacity: bundled with Hyprland</span>
                     </li>
                     <li>
+                        <span class="hd-requisitos__codes"><code>hyprland.conf</code> / <code>hyprland.lua</code></span>
+                        <span>Hyprland configuration: works with both formats</span>
+                    </li>
+                    <li>
                         <code>polkit</code>
                         <span>Privilege escalation for profile changes</span>
                     </li>
@@ -251,7 +255,7 @@
                         <p class="hd-feature__desc">Arrange your screens by dragging them into the position you need. Set resolution, refresh rate, orientation, scale and primary display all from one place.</p>
                         <details class="hd-feature__details">
                             <summary>Technical details</summary>
-                            <div class="hd-feature__details__body">Changes are applied with hyprctl keyword and saved to your Hyprland configuration so they persist across restarts.</div>
+                            <div class="hd-feature__details__body">Changes are applied live with hyprctl and saved to HyprDesk's own file (hyprdesk.conf or hyprdesk.lua, depending on your configuration) so they persist across restarts, without rewriting your files.</div>
                         </details>
                     </div>
                 </div>
