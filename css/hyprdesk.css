@@ -19,18 +19,8 @@
     width: 100%;
 }
 
-.hd-hero .estado-badge--azul {
-    background: rgba(80, 105, 130, 0.14);
-    color: #4e6478;
-}
-
 .hd-hero .estado-badge--azul::before {
     color: #607a90;
-}
-
-.hd-hero .tech-badge {
-    background: rgba(45, 55, 70, 0.16);
-    color: #2d3748;
 }
 
 .hd-hero__header {

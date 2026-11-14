@@ -569,6 +569,12 @@ section {
   padding: 0.3rem 1rem;
   border-radius: 50px;
   width: fit-content;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+  -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+  color: var(--negro);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80), 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .estado-badge::before {
@@ -586,27 +592,12 @@ section {
   --estado-icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.6 5h6.8' stroke='%23000' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
-.estado-badge--verde {
-  background: rgba(97, 204, 174, 0.2);
-  color: #2a9d6e;
-}
-
 .estado-badge--verde::before {
   color: #61ccae;
 }
 
-.estado-badge--naranja {
-  background: rgba(255, 140, 0, 0.15);
-  color: #c56a00;
-}
-
 .estado-badge--naranja::before {
   color: #ff8c00;
-}
-
-.estado-badge--azul {
-  background: rgba(53, 119, 177, 0.15);
-  color: #2b6fa8;
 }
 
 .estado-badge--azul::before {
@@ -620,8 +611,12 @@ section {
   font-weight: 600;
   padding: 0.2rem 0.8rem;
   border-radius: 50px;
-  background: rgba(71, 85, 105, 0.1);
-  color: #475569;
+  background: rgba(255, 255, 255, 0.58);
+  backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+  -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+  color: var(--negro);
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80), 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .producto-card__desc {
@@ -650,18 +645,8 @@ section {
   background: linear-gradient(135deg, #f0f1f4 0%, #dddfe4 100%);
 }
 
-.producto-card.hyprdesk .estado-badge--azul {
-  background: rgba(80, 105, 130, 0.14);
-  color: #4e6478;
-}
-
 .producto-card.hyprdesk .estado-badge--azul::before {
   color: #607a90;
-}
-
-.producto-card.hyprdesk .tech-badge {
-  background: rgba(45, 55, 70, 0.16);
-  color: #2d3748;
 }
 
 /* ==================== NOVEDADES ==================== */
@@ -687,18 +672,8 @@ section {
   background: linear-gradient(135deg, #f0f1f4 0%, #dddfe4 100%);
 }
 
-.tool-card.hyprdesk .estado-badge--azul {
-  background: rgba(80, 105, 130, 0.14);
-  color: #4e6478;
-}
-
 .tool-card.hyprdesk .estado-badge--azul::before {
   color: #607a90;
-}
-
-.tool-card.hyprdesk .tech-badge {
-  background: rgba(45, 55, 70, 0.16);
-  color: #2d3748;
 }
 
 .tool-card:hover {
