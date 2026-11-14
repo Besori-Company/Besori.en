@@ -29,12 +29,8 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    padding: 4rem 3rem;
-    background: linear-gradient(135deg, #fcfcfd 0%, #f3f4f6 100%);
-    border-radius: 1.6rem;
-    width: 100%;
-    max-width: 900px;
-    margin-bottom: 1.5rem;
+    padding: 4rem 3rem calc(4rem + var(--solape));
+    --c: #fcfcfd;
     opacity: 0;
     transform: translateY(20px);
 }
@@ -55,47 +51,81 @@
     margin: 0;
 }
 
-/* ==================== GRID ==================== */
-.nosotros-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+/* ==================== PILA DE TARJETAS ==================== */
+.nosotros-pila {
+    --solape: 2.6rem;
+    --r: 2.8rem;
+    display: flex;
+    flex-direction: column;
     max-width: 900px;
     width: 100%;
     margin-bottom: 2.5rem;
 }
 
-.nosotros-item {
+.nosotros-item,
+.nosotros-aviso {
+    --c: #e2dcfb;
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 1.2rem;
-    padding: 2.6rem 2.2rem;
+    gap: 1rem;
+    padding: 2.6rem 2.8rem calc(2.6rem + var(--solape));
     text-align: left;
-    border-radius: 1.6rem;
     opacity: 0;
     transform: translateY(20px);
 }
 
+.nosotros-pila > * + * {
+    margin-top: calc(var(--solape) * -1);
+}
+
+.nosotros-pila > :last-child {
+    padding-bottom: 2.6rem;
+}
+
+.nosotros-item--origen  { --c: linear-gradient(90deg, #ffd080 0%, #fff0d4 100%); }
+.nosotros-item--hacemos { --c: linear-gradient(90deg, #d4e4f5 0%, #e8f0fa 100%); }
+.nosotros-item--mision  { --c: linear-gradient(90deg, #d4ede5 0%, #e8f5f0 100%); }
+.nosotros-aviso         { --c: linear-gradient(90deg, #e2d9f0 0%, #f0ecf8 100%); }
+
+.nosotros-pila > * {
+    position: relative;
+    isolation: isolate;
+}
+
+.nosotros-pila > *::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--c);
+    border-radius: var(--r);
+    box-shadow: 0 -6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.nosotros-pila > :nth-child(odd)::before  { rotate: -1.2deg; }
+.nosotros-pila > :nth-child(even)::before { rotate: 1.2deg; }
+
 .nosotros-item__titulo {
-    font-size: 1.9rem;
+    font-size: 2rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
     margin: 0;
     color: var(--negro);
 }
 
 .nosotros-item__desc {
-    font-size: 1.6rem;
-    line-height: 1.65;
+    font-size: 1.55rem;
+    line-height: 1.6;
     color: var(--negro_claro);
     margin: 0;
+    max-width: 60ch;
 }
 
 .nosotros-item__etiquetas {
     display: flex;
     flex-wrap: wrap;
     gap: 0.6rem;
-    margin-top: auto;
     padding-top: 0.4rem;
 }
 
@@ -112,41 +142,6 @@
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80), 0 4px 16px rgba(0, 0, 0, 0.06);
     font-size: 1.3rem;
     font-weight: 600;
-}
-
-/* Colores por card */
-.nosotros-item--origen {
-    background: linear-gradient(135deg, #e8f5f0 0%, #d4ede5 100%);
-}
-
-.nosotros-item--hacemos {
-    background: linear-gradient(135deg, #fff4e6 0%, #ffe8c8 100%);
-}
-
-.nosotros-item--mision {
-    background: linear-gradient(135deg, #e8f0fa 0%, #d4e4f5 100%);
-}
-
-/* ==================== AVISO ==================== */
-.nosotros-aviso {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    padding: 2.6rem 2.2rem;
-    border-radius: 1.6rem;
-    background: linear-gradient(135deg, #fcfcfd 0%, #f3f4f6 100%);
-    text-align: left;
-    max-width: 900px;
-    width: 100%;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.nosotros-aviso__texto {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
 }
 
 /* ==================== CTA ==================== */
@@ -189,13 +184,17 @@
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 750px) {
-    .nosotros-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
+    .nosotros-pila {
+        --solape: 2rem;
+        --r: 2rem;
     }
 
+    .nosotros-pila > :nth-child(odd)::before  { rotate: -0.8deg; }
+    .nosotros-pila > :nth-child(even)::before { rotate: 0.8deg; }
+
+
     .nosotros-hero {
-        padding: 3rem 2rem;
+        padding: 3rem 2rem calc(3rem + var(--solape));
     }
 
     .nosotros-hero__texto {
@@ -208,12 +207,11 @@
 
     .nosotros-item,
     .nosotros-aviso {
-        padding: 2rem 1.8rem;
+        padding: 2.2rem 2rem calc(2.2rem + var(--solape));
     }
 
-    .nosotros-aviso {
-        flex-direction: column;
-        gap: 0.8rem;
+    .nosotros-pila > :last-child {
+        padding-bottom: 2.2rem;
     }
 
     .nosotros-item__desc {
@@ -232,7 +230,7 @@
 
 @media (max-width: 480px) {
     .nosotros-hero {
-        padding: 2.5rem 1.5rem;
+        padding: 2.5rem 1.5rem calc(2.5rem + var(--solape));
     }
 
     .nosotros-hero__texto {
@@ -245,7 +243,11 @@
 
     .nosotros-item,
     .nosotros-aviso {
-        padding: 1.8rem 1.5rem;
+        padding: 2rem 1.6rem calc(2rem + var(--solape));
+    }
+
+    .nosotros-pila > :last-child {
+        padding-bottom: 2rem;
     }
 
     .nosotros-item__titulo {
@@ -269,7 +271,11 @@
 
     .nosotros-item,
     .nosotros-aviso {
-        padding: 1.5rem 1.2rem;
+        padding: 1.8rem 1.4rem calc(1.8rem + var(--solape));
+    }
+
+    .nosotros-pila > :last-child {
+        padding-bottom: 1.8rem;
     }
 }
 
