@@ -25,7 +25,7 @@
 }
 
 .hd-hero .estado-badge--azul::before {
-    background: #607a90;
+    color: #607a90;
 }
 
 .hd-hero .tech-badge {

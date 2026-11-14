@@ -572,11 +572,18 @@ section {
 }
 
 .estado-badge::before {
+  --estado-icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M5 1.6v6.8M1.6 5h6.8' stroke='%23000' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E");
   content: '';
-  width: 0.7rem;
-  height: 0.7rem;
-  border-radius: 50%;
-  display: inline-block;
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  background-color: currentColor;
+  -webkit-mask: var(--estado-icono) center / contain no-repeat;
+  mask: var(--estado-icono) center / contain no-repeat;
+}
+
+.estado-badge--desarrollo::before {
+  --estado-icono: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.6 5h6.8' stroke='%23000' stroke-width='2.8' stroke-linecap='round'/%3E%3C/svg%3E");
 }
 
 .estado-badge--verde {
@@ -585,7 +592,7 @@ section {
 }
 
 .estado-badge--verde::before {
-  background: #61ccae;
+  color: #61ccae;
 }
 
 .estado-badge--naranja {
@@ -594,7 +601,7 @@ section {
 }
 
 .estado-badge--naranja::before {
-  background: #ff8c00;
+  color: #ff8c00;
 }
 
 .estado-badge--azul {
@@ -603,7 +610,7 @@ section {
 }
 
 .estado-badge--azul::before {
-  background: #3577b1;
+  color: #3577b1;
 }
 
 .tech-badge {
@@ -649,7 +656,7 @@ section {
 }
 
 .producto-card.hyprdesk .estado-badge--azul::before {
-  background: #607a90;
+  color: #607a90;
 }
 
 .producto-card.hyprdesk .tech-badge {
@@ -686,7 +693,7 @@ section {
 }
 
 .tool-card.hyprdesk .estado-badge--azul::before {
-  background: #607a90;
+  color: #607a90;
 }
 
 .tool-card.hyprdesk .tech-badge {
