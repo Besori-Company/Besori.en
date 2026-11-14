@@ -640,16 +640,6 @@
     stroke-linecap: round;
 }
 
-/* ==================== ANIMACIONES ==================== */
-.fade-in {
-    animation: hd-fade 0.7s ease both;
-}
-
-@keyframes hd-fade {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
-
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 750px) {
     .hd-hero {

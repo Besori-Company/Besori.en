@@ -904,6 +904,9 @@ section {
 }
 
 .ct-main {
+    display: block;
+    text-decoration: none;
+    color: inherit;
     background-color: #ffe5a0;
     background-image: radial-gradient(rgba(184, 110, 0, 0.22) 1.3px, transparent 1.3px);
     background-size: 14px 14px;

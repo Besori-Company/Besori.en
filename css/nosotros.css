@@ -30,8 +30,6 @@
     align-items: center;
     padding: 4rem 3rem calc(4rem + var(--solape));
     --c: #fcfcfd;
-    opacity: 0;
-    transform: translateY(20px);
 }
 
 .img-bessie {
@@ -62,8 +60,6 @@
     gap: 1rem;
     padding: 2.6rem 2.8rem calc(2.6rem + var(--solape));
     text-align: left;
-    opacity: 0;
-    transform: translateY(20px);
 }
 
 .nosotros-pila > * + * {
@@ -138,8 +134,6 @@
 /* ==================== CTA ==================== */
 .nosotros-cta-wrap {
     margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(20px);
 }
 
 .nosotros-cta {
@@ -159,18 +153,6 @@
 .nosotros-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* ==================== ANIMACIONES ==================== */
-.fade-in {
-    animation: fade-slide-in 0.8s ease forwards;
-}
-
-@keyframes fade-slide-in {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* ==================== RESPONSIVE ==================== */
