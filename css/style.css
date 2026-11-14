@@ -701,10 +701,6 @@ section {
   color: #2d3748;
 }
 
-.tool-card.hyprdesk .tool-card__link {
-  color: #4a5568;
-}
-
 .tool-card:hover {
   transform: translateY(-3px) translateZ(0);
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
@@ -830,8 +826,18 @@ section {
   gap: 0.5rem;
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--azul);
+  color: var(--blanco);
+  background: var(--negro);
+  align-self: flex-start;
+  padding: 0.8rem 1.8rem;
+  border-radius: 50px;
   margin-top: 0.5rem;
+  transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.tool-card:hover .tool-card__link {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 
 .tool-card__link svg {
@@ -840,11 +846,6 @@ section {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  transition: transform var(--transicion);
-}
-
-.tool-card:hover .tool-card__link svg {
-  transform: translate(2px, -2px);
 }
 
 .tool-card:hover .image-3d {
