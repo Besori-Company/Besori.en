@@ -661,7 +661,6 @@ section {
   width: 100%;
   border-radius: var(--radio_grande);
   padding: var(--card-pad-y) var(--card-pad-x);
-  transition: transform var(--transicion), box-shadow var(--transicion);
   overflow: hidden;
   text-decoration: none;
   color: inherit;
@@ -674,11 +673,6 @@ section {
 
 .tool-card.hyprdesk .estado-badge--azul::before {
   color: #607a90;
-}
-
-.tool-card:hover {
-  transform: translateY(-3px) translateZ(0);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -758,6 +752,37 @@ section {
   background: rgba(255, 140, 0, 0.16);
 }
 
+.tool-card.cloud {
+  background: linear-gradient(135deg, #e8f5f0 0%, #d4ede5 100%);
+}
+
+.tool-card.kael {
+  background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+}
+
+.card-media__panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 20rem;
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.card-media__prox {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.45);
+  letter-spacing: 0.01em;
+}
+
+@media (max-width: 750px) {
+  .card-media__panel {
+    min-height: 15rem;
+  }
+}
+
 .tool-card__info {
   display: flex;
   flex-direction: column;
@@ -810,7 +835,7 @@ section {
   transition: transform var(--transicion), box-shadow var(--transicion);
 }
 
-.tool-card:hover .tool-card__link {
+.tool-card__link:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
@@ -823,7 +848,7 @@ section {
   stroke-linejoin: round;
 }
 
-.tool-card:hover .image-3d {
+.tool-card .image-container:hover .image-3d {
   transform: scale(1.05) translateY(-5px) translateZ(0);
   will-change: transform;
   animation: bounce-elastic 0.6s ease-in-out;
