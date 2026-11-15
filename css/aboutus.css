@@ -70,7 +70,7 @@
     padding-bottom: 2.6rem;
 }
 
-.nosotros-item--origen  { --c: linear-gradient(90deg, #ffd080 0%, #fff0d4 100%); }
+.nosotros-item--origen  { --c: linear-gradient(90deg, #ffe9a6 0%, #fff0d4 100%); }
 .nosotros-item--hacemos { --c: linear-gradient(90deg, #d4e4f5 0%, #e8f0fa 100%); }
 .nosotros-item--mision  { --c: linear-gradient(90deg, #d4ede5 0%, #e8f5f0 100%); }
 .nosotros-aviso         { --c: linear-gradient(90deg, #e2d9f0 0%, #f0ecf8 100%); }
