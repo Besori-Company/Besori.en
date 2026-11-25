@@ -70,10 +70,10 @@
     padding-bottom: 2.6rem;
 }
 
-.nosotros-item--origen  { --c: linear-gradient(90deg, #ffe9a6 0%, #fff0d4 100%); }
-.nosotros-item--hacemos { --c: linear-gradient(90deg, #d4e4f5 0%, #e8f0fa 100%); }
-.nosotros-item--mision  { --c: linear-gradient(90deg, #d4ede5 0%, #e8f5f0 100%); }
-.nosotros-aviso         { --c: linear-gradient(90deg, #e2d9f0 0%, #f0ecf8 100%); }
+.nosotros-item--origen  { --c: linear-gradient(90deg, #ffe9a6 0%, #ffefc4 100%); }
+.nosotros-item--hacemos { --c: linear-gradient(90deg, #d4e4f5 0%, #dfeaf7 100%); }
+.nosotros-item--mision  { --c: linear-gradient(90deg, #d4ede5 0%, #dff2eb 100%); }
+.nosotros-aviso         { --c: linear-gradient(90deg, #e2d9f0 0%, #e9e2f4 100%); }
 
 .nosotros-pila > * {
     position: relative;
