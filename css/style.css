@@ -448,8 +448,8 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 4.8rem;
-    height: 4.8rem;
+    width: 4.3rem;
+    height: 4.3rem;
     border-radius: 1.2rem;
     flex-shrink: 0;
 }
@@ -465,14 +465,44 @@ section {
 }
 
 .titulo_ico svg {
-    width: 2.4rem;
-    height: 2.4rem;
+    width: 2.15rem;
+    height: 2.15rem;
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+/* Iconos de título como pegatinas */
+.titulo_ico.pegatina {
+    background: none;
+    border-radius: 0;
+    margin-left: .3rem;
+    --peg: #ffe3c2;
+    --trazo: #f59324;
+    color: var(--trazo);
+}
+
+.titulo_ico.pegatina.azul {
+    --peg: #d9e9f8;
+    --trazo: #5a93c9;
+}
+
+.titulo_ico.pegatina svg {
+    width: 86%;
+    height: 86%;
+    overflow: visible;
+    stroke: var(--trazo);
+    stroke-width: 2.1;
+}
+
+.titulo_ico.pegatina .peg-fondo {
+    stroke: var(--peg);
+    fill: var(--peg);
+    stroke-width: 7.5;
+}
+
 
 .icono {
     height: 7rem;
@@ -745,11 +775,14 @@ section {
 }
 
 .tipo-chip--herramienta {
-  color: #c56a00;
+  color: var(--negro);
+  padding-right: 1.3rem;
 }
 
 .tipo-chip--herramienta svg {
+  color: #c56a00;
   background: rgba(255, 140, 0, 0.16);
+  padding: 0.4rem;
 }
 
 .tool-card.cloud {
@@ -1416,13 +1449,13 @@ section {
     }
 
     .titulo_ico {
-        width: 4.2rem;
-        height: 4.2rem;
+        width: 3.8rem;
+        height: 3.8rem;
     }
 
     .titulo_ico svg {
-        width: 2.1rem;
-        height: 2.1rem;
+        width: 1.9rem;
+        height: 1.9rem;
     }
 
     footer {
@@ -1543,14 +1576,14 @@ section {
     }
 
     .titulo_ico {
-        width: 3.8rem;
-        height: 3.8rem;
+        width: 3.4rem;
+        height: 3.4rem;
         border-radius: 0.9rem;
     }
 
     .titulo_ico svg {
-        width: 1.9rem;
-        height: 1.9rem;
+        width: 1.7rem;
+        height: 1.7rem;
     }
 
     .producto-card {
@@ -1758,14 +1791,14 @@ section {
     }
 
     .titulo_ico {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 2.9rem;
+        height: 2.9rem;
         border-radius: 0.7rem;
     }
 
     .titulo_ico svg {
-        width: 1.6rem;
-        height: 1.6rem;
+        width: 1.45rem;
+        height: 1.45rem;
     }
 
     .btn_usuario {
