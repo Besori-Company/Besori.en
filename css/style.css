@@ -866,6 +866,17 @@ section {
   transition: none !important;
 }
 
+.brota--izq.brota--lista::after {
+  left: auto;
+  right: 100%;
+}
+
+.brota--izq .brota__forma {
+  left: auto;
+  right: -10px;
+  transform: scaleX(-1) !important;
+}
+
 .brota__flecha {
   position: absolute;
   top: 0;

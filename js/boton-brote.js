@@ -71,6 +71,7 @@
     b.appendChild(flecha);
     b.classList.add('brota--lista');
 
+    var izq = b.classList.contains('brota--izq');
     var grad = svg.querySelector('linearGradient'), st = grad.querySelectorAll('stop'), path = svg.querySelector('path');
     var m = {}, p = 0, v = 0, objetivo = 0, anim = false, recogiendo = false;
 
@@ -81,6 +82,8 @@
       svg.setAttribute('width', n(ancho + 2 * M));
       svg.setAttribute('height', n(H + 2 * M));
       svg.setAttribute('viewBox', '0 0 ' + n(ancho + 2 * M) + ' ' + n(H + 2 * M));
+      svg.style.width = n(ancho + 2 * M) + 'px';
+      svg.style.height = n(H + 2 * M) + 'px';
       var fin = W + m.gF + H;
       grad.setAttribute('x1', M);
       grad.setAttribute('x2', n(M + fin));
@@ -105,7 +108,7 @@
       var piezas = [{ xl: M + R, xr: M + m.W - R, r: R }];
       if (r > 0.3) piezas.push({ xl: M + m.W + hueco + r, xr: M + m.W + hueco + r, r: r });
       path.setAttribute('d', cadena(piezas, [cuello], m.cy));
-      flecha.style.left = n(m.W + hueco + (r - R)) + 'px';
+      flecha.style.left = (izq ? n(-(hueco + r) - R) : n(m.W + hueco + (r - R))) + 'px';
       flecha.style.setProperty('--brota-f', n(f));
     }
 
