@@ -1029,6 +1029,7 @@ section {
 }
 
 .canales_section {
+    overflow-x: clip;
     height: auto;
     border-bottom-right-radius: var(--radio_grande);
     border-bottom-left-radius: var(--radio_grande);
