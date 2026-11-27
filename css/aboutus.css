@@ -137,6 +137,8 @@
 }
 
 .nosotros-cta {
+    --brota-bola: #f59324;
+    --brota-flecha: var(--blanco);
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;

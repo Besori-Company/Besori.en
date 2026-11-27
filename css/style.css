@@ -828,6 +828,73 @@ section {
   }
 }
 
+.brota {
+  position: relative;
+  isolation: isolate;
+}
+
+.brota--lista {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.brota--lista::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 5rem;
+  height: 100%;
+}
+
+.brota__forma {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  z-index: -1;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.brota__forma,
+.brota__forma path {
+  stroke: none !important;
+}
+
+.brota__forma {
+  transform: none !important;
+  transition: none !important;
+}
+
+.brota__flecha {
+  position: absolute;
+  top: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: var(--brota-f, 0);
+  transform: scale(calc(0.4 + var(--brota-f, 0) * 0.6)) rotate(calc((1 - var(--brota-f, 0)) * -45deg));
+}
+
+.brota__flecha svg {
+  width: 40%;
+  height: 40%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ct-footer__btn {
+  --brota-bola: #f59324;
+  --brota-flecha: var(--blanco);
+}
+
+.ct-footer__btn.brota--lista {
+  margin-right: 5rem;
+}
+
 .tool-card.cloud {
   background: linear-gradient(135deg, #e8f5f0 0%, #d4ede5 100%);
 }
