@@ -1035,149 +1035,363 @@ section {
     padding-bottom: 5rem;
 }
 
-/* ==================== CANALES GRID ==================== */
-.canales-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.canal-card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 2.5rem 2.5rem;
-    border-radius: var(--radio_grande);
-    text-decoration: none;
-    color: inherit;
-    transition: transform var(--transicion), box-shadow var(--transicion);
-    position: relative;
+/* ==================== CANALES: BARAJA ==================== */
+.canales-iconos {
+    position: absolute;
+    width: 0;
+    height: 0;
     overflow: hidden;
 }
 
-.canal-card__top {
+[data-canal="github"] {
+    --c: #24292f;
+    --fondo: linear-gradient(135deg, #434b58 0%, #24292f 48%, #15181c 100%);
+    --tinte: #d6deeb;
+}
+
+[data-canal="instagram"] {
+    --c: #d62976;
+    --fondo: linear-gradient(135deg, #f24f8b 0%, #d62976 45%, #a8298f 100%);
+    --tinte: #f6d9d6;
+}
+
+[data-canal="x"] {
+    --c: #0a0a0a;
+    --fondo: linear-gradient(135deg, #3a3c42 0%, #111214 48%, #000 100%);
+    --tinte: #dddfe4;
+}
+
+[data-canal="reddit"] {
+    --c: #e23d00;
+    --fondo: linear-gradient(135deg, #ff6a2a 0%, #f04800 45%, #c73500 100%);
+    --tinte: #ffdcc6;
+}
+
+.canales-mesa {
+    --muelle: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --h: 30rem;
+    --paso: 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 3.2rem 3.5rem 3.5rem;
+    background-color: var(--tinte, #eceff3);
+    background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: var(--radio_grande);
+    text-align: left;
+    transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Cabecera --- */
+.canales-cabecera {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1.5rem;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2.4rem;
 }
 
-.canal-card::after {
-    content: '';
-    position: absolute;
-    bottom: -15px;
-    right: -15px;
-    width: 160px;
-    height: 160px;
-    pointer-events: none;
-    transition: opacity var(--transicion);
-}
-
-.canal-card:hover::after {
-    opacity: 0.35;
-}
-
-.canal-card--github::after {
-    opacity: 0.15;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%231a1f25' stroke-width='2'%3E%3Crect x='15' y='15' width='110' height='110' rx='22' transform='rotate(15 80 80)'/%3E%3Crect x='35' y='35' width='70' height='70' rx='14' transform='rotate(15 80 80)'/%3E%3Crect x='55' y='55' width='30' height='30' rx='7' transform='rotate(15 80 80)'/%3E%3C/svg%3E") no-repeat center;
-}
-
-.canal-card--instagram::after {
-    opacity: 0.18;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%23e65100' stroke-width='2'%3E%3Crect x='25' y='25' width='70' height='70' rx='18' transform='rotate(15 60 60)'/%3E%3Crect x='40' y='40' width='40' height='40' rx='10' transform='rotate(15 60 60)'/%3E%3Crect x='100' y='95' width='40' height='40' rx='12' transform='rotate(-10 120 115)'/%3E%3Crect x='110' y='105' width='20' height='20' rx='6' transform='rotate(-10 120 115)'/%3E%3C/svg%3E") no-repeat center;
-}
-
-.canal-card--playstore::after {
-    opacity: 0.2;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='%239080c0' stroke-width='2'%3E%3Ccircle cx='75' cy='65' r='45'/%3E%3Ccircle cx='75' cy='65' r='28'/%3E%3Ccircle cx='75' cy='65' r='12'/%3E%3Crect x='110' y='110' width='28' height='28' rx='6' transform='rotate(15 124 124)'/%3E%3Crect x='115' y='85' width='18' height='18' rx='4' transform='rotate(-10 124 94)'/%3E%3C/svg%3E") no-repeat center;
-}
-
-.canal-card--x::after {
-    opacity: 0.2;
-    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg' fill='none' stroke='white' stroke-width='1.5'%3E%3Cline x1='10' y1='5' x2='120' y2='115'/%3E%3Cline x1='30' y1='5' x2='140' y2='115'/%3E%3Cline x1='50' y1='5' x2='160' y2='115'/%3E%3Cline x1='70' y1='5' x2='180' y2='115'/%3E%3Ccircle cx='110' cy='125' r='16'/%3E%3Ccircle cx='110' cy='125' r='26'/%3E%3Ccircle cx='110' cy='125' r='36'/%3E%3C/svg%3E") no-repeat center;
-}
-
-.canal-card:hover {
-    transform: translateY(-3px) translateZ(0);
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.1);
-}
-
-.canal-card__icono {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 1.2rem;
-}
-
-.canal-card__nombre {
-    font-size: 2rem;
+.canales-intro__titulo {
+    font-size: 2.2rem;
     font-weight: 700;
-    margin: 0;
+    color: var(--negro);
+    letter-spacing: -0.02em;
     line-height: 1.2;
+    margin: 0 0 0.6rem;
 }
 
-.canal-card__texto {
+.canales-intro__desc {
+    font-size: 1.6rem;
+    line-height: 1.55;
+    color: var(--negro_claro);
+    margin: 0;
+    max-width: 44ch;
+}
+
+.canales-control {
+    flex: 0 0 auto;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.canales-flecha {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    cursor: pointer;
+    color: var(--negro);
+    background: rgba(255, 255, 255, 0.58);
+    backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+    -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.04);
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.80), 0 4px 16px rgba(0, 0, 0, 0.06);
+    transition: background var(--transicion);
+}
+
+.canales-flecha svg {
+    display: block;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.canales-flecha:hover {
+    background: var(--blanco);
+}
+
+.canales-puntos {
+    display: flex;
+    align-items: center;
     gap: 0.2rem;
 }
 
-.canal-card__usuario {
+.canales-punto {
+    width: 2rem;
+    height: 3rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: width 0.45s var(--muelle);
+}
+
+.canales-punto::after {
+    content: '';
+    width: 0.9rem;
+    height: 0.9rem;
+    border-radius: 50px;
+    background: rgba(10, 10, 10, 0.18);
+    transition: width 0.45s var(--muelle), background var(--transicion);
+}
+
+.canales-punto[aria-pressed="true"] {
+    width: 3.4rem;
+}
+
+.canales-punto[aria-pressed="true"]::after {
+    width: 2.6rem;
+    background: var(--c);
+}
+
+.canales-flecha:focus-visible,
+.canales-punto:focus-visible,
+.canales-baraja:focus-visible {
+    outline: 2px solid var(--negro);
+    outline-offset: 3px;
+}
+
+/* --- Baraja --- */
+.canales-baraja {
+    position: relative;
+    height: calc(var(--h) + 3.5rem);
+    margin-top: 2.4rem;
+    border-radius: 2.6rem;
+    touch-action: pan-y;
+}
+
+.canal-naipe[data-pos="0"] { --n: 0; }
+.canal-naipe[data-pos="1"] { --n: 1; }
+.canal-naipe[data-pos="2"] { --n: 2; }
+.canal-naipe[data-pos="3"] { --n: 3; }
+
+.canal-naipe {
+    --asoma: 0rem;
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    width: calc(100% - 3 * var(--paso) - 2rem);
+    height: var(--h);
+    box-sizing: border-box;
+    padding: 2.8rem 6rem 2.8rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    color: var(--blanco);
+    background: var(--fondo, var(--c));
+    border-radius: 2.6rem;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.18),
+        0 14px 34px rgba(0, 0, 0, 0.14),
+        0 2px 6px rgba(0, 0, 0, 0.06);
+    z-index: calc(10 - var(--n));
+    transform-origin: 0% 100%;
+    transform:
+        translateX(calc(var(--n) * var(--paso) + var(--asoma)))
+        rotate(calc(var(--n) * 1.4deg))
+        scale(calc(1 - var(--n) * 0.04));
+    transition: transform 0.6s var(--muelle);
+}
+
+.canal-naipe:not([data-pos="0"]) {
+    cursor: pointer;
+}
+
+.canal-naipe:not([data-pos="0"]):hover {
+    --asoma: 1rem;
+}
+
+/* Sacar una carta de detrás */
+.canal-naipe.sacando {
+    transform: translateX(55%) translateY(-1.4rem) rotate(5deg);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Pasar a la siguiente */
+.canal-naipe.descartando {
+    transform: translateX(-38%) translateY(-0.8rem) rotate(-5deg);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.canal-naipe__lomo {
+    position: absolute;
+    top: 2.4rem;
+    right: 1.3rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    writing-mode: vertical-rl;
     font-size: 1.3rem;
-    font-weight: 500;
-    color: var(--negro_claro);
-    margin: 0;
-    opacity: 0.7;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
 }
 
-.canal-card__desc {
+.canal-naipe__lomo svg {
+    display: block;
+    width: 1.6rem;
+    height: 1.6rem;
+}
+
+.canal-naipe__marca {
+    position: absolute;
+    right: 4rem;
+    bottom: -5rem;
+    width: 22rem;
+    height: 22rem;
+    color: var(--blanco);
+    opacity: 0.09;
+    rotate: -12deg;
+    pointer-events: none;
+}
+
+.canal-naipe[data-canal="x"] .canal-naipe__marca {
+    opacity: 0.18;
+}
+
+.canal-naipe:not([data-pos="0"]) .canal-naipe__marca {
+    display: none;
+}
+
+/* --- Contenido --- */
+.canal-naipe__cabeza {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-bottom: auto;
+}
+
+.canal-naipe__ico {
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 1.9rem;
+    display: grid;
+    place-items: center;
+    background: rgba(255, 255, 255, 0.16);
+}
+
+.canal-naipe__ico svg {
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+}
+
+.canal-naipe__handle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 1.1rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.16);
+    backdrop-filter: blur(32px) saturate(180%);
+    -webkit-backdrop-filter: blur(32px) saturate(180%);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.canal-naipe__nombre {
+    font-size: 3.4rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 0.6rem;
+}
+
+.canal-naipe__desc {
+    font-size: 1.55rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0 0 2rem;
+    max-width: 40ch;
+}
+
+.canal-naipe__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    background: var(--blanco);
+    color: var(--negro);
     font-size: 1.5rem;
-    color: var(--negro_claro);
-    margin: 0;
-    line-height: 1.4;
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: transform var(--transicion);
 }
 
-/* Colores por plataforma */
-.canal-card--github {
-    background: linear-gradient(135deg, #e8e8ec 0%, #d8d8de 100%);
-}
-.canal-card--github .canal-card__icono {
-    background: #1a1f25;
-    color: white;
-}
-
-.canal-card--instagram {
-    background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
-}
-.canal-card--instagram .canal-card__icono {
-    background: linear-gradient(135deg, #f9a825, #f57c00, #e65100);
-    color: white;
+.canal-naipe__cta svg {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.45s var(--muelle);
 }
 
-.canal-card--playstore {
-    background: linear-gradient(135deg, #f8f0d8 0%, #f0e2c8 100%);
-}
-.canal-card--playstore .canal-card__icono {
-    background: white;
+.canal-naipe__cta:hover {
+    transform: translateY(-2px);
 }
 
-.canal-card--x {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
-    color: white;
+.canal-naipe__cta:hover svg {
+    transform: translate(2px, -2px);
 }
-.canal-card--x .canal-card__icono {
-    background: rgba(255, 255, 255, 0.12);
-    color: white;
+
+.canal-naipe__cta:focus-visible {
+    outline: 2px solid var(--blanco);
+    outline-offset: 3px;
 }
-.canal-card--x .canal-card__desc,
-.canal-card--x .canal-card__usuario {
-    color: rgba(255, 255, 255, 0.8);
+
+@media (prefers-reduced-motion: reduce) {
+    .canal-naipe,
+    .canal-naipe.sacando,
+    .canal-naipe.descartando,
+    .canal-naipe__cta,
+    .canal-naipe__cta svg,
+    .canales-mesa,
+    .canales-flecha,
+    .canales-punto,
+    .canales-punto::after {
+        transition: none;
+    }
 }
+
 
 .feedback_section {
     padding-top: 4rem;
@@ -1699,37 +1913,73 @@ section {
         align-items: center;
         gap: 0.8rem;
     }
+    
+    .canales-mesa {
+        --paso: 2.2rem;
+        --h: 36rem;
+        padding: 2.4rem 1.6rem 2.4rem;
+        display: flex;
+        flex-direction: column;
+    }
 
-    .canales-grid {
-        grid-template-columns: 1fr;
+    .canales-cabecera {
+        display: contents;
+    }
+
+    .canales-intro    { order: 1; }
+    .canales-baraja   { order: 2; }
+    .canales-control  { order: 3; margin-top: 1.6rem; }
+
+    .canales-intro__desc {
+        font-size: 1.5rem;
+    }
+
+    .canales-control {
+        justify-content: space-between;
+    }
+
+    .canales-baraja {
+        margin-top: 1.4rem;
+    }
+
+    .canal-naipe {
+        width: calc(100% - 3 * var(--paso) - 1rem);
+        padding: 2.2rem 4.6rem 2.2rem 2.2rem;
+    }
+
+    .canal-naipe__cabeza {
+        flex-direction: column;
+        align-items: flex-start;
         gap: 1.2rem;
     }
 
-    .canal-card {
-        flex-direction: row;
-        align-items: center;
-        padding: 1.6rem 1.8rem;
-        gap: 1.2rem;
+    .canal-naipe__ico {
+        width: 5.6rem;
+        height: 5.6rem;
+        border-radius: 1.7rem;
     }
 
-    .canal-card__icono {
-        width: 4.2rem;
-        height: 4.2rem;
+    .canal-naipe__ico svg {
+        width: 2.8rem;
+        height: 2.8rem;
     }
 
-    .canal-card__texto {
-        display: none;
+    .canal-naipe__nombre {
+        font-size: 2.8rem;
     }
 
-    .canal-card__desc {
+    .canal-naipe__desc {
         font-size: 1.4rem;
-        margin: 0;
+        margin-bottom: 1.6rem;
     }
 
-    .canal-card::after {
-        width: 100px;
-        height: 100px;
+    .canal-naipe__marca {
+        width: 16rem;
+        height: 16rem;
+        right: -3rem;
+        bottom: -3rem;
     }
+
 
 }
 
@@ -1812,8 +2062,3 @@ section {
     }
 }
 
-@media (max-width: 350px) {
-    .canal-card::after {
-        display: none;
-    }
-}
