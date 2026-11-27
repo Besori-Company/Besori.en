@@ -744,45 +744,88 @@ section {
 }
 
 .tipo-chip {
+  --chip-alto: 3rem;
+  --chip-oscuro: #ef8217;
+  --chip-medio: #f59324;
+  --chip-capsula: #f59324;
+  --chip-capsula-fin: #f9a64f;
+  --chip-texto: var(--blanco);
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
   z-index: 2;
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  height: var(--chip-alto);
   font-size: 1.25rem;
   font-weight: 600;
-  padding: 0.35rem 1rem 0.35rem 0.4rem;
-  border-radius: 50px;
-  background: rgba(255, 255, 255, 0.92);
-  -webkit-backdrop-filter: blur(4px);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.16));
 }
 
-.tipo-chip svg {
-  width: 2.4rem;
-  height: 2.4rem;
-  padding: 0.5rem;
-  border-radius: 50%;
+.tipo-chip__forma {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.tipo-chip__icono {
+  position: relative;
+  width: var(--chip-alto);
+  height: var(--chip-alto);
+  padding: calc(var(--chip-alto) * 0.22);
   box-sizing: border-box;
+  border-radius: 50%;
+  color: var(--blanco);
   stroke: currentColor;
   fill: none;
-  stroke-width: 2;
+  stroke-width: 2.2;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.tipo-chip--herramienta {
-  color: var(--negro);
-  padding-right: 1.3rem;
+.tipo-chip__texto {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: calc(var(--chip-alto) * 0.28);
+  padding: 0.12rem 1.2rem 0;
+  line-height: 1;
+  border-radius: 50px;
+  color: var(--chip-texto);
+  text-shadow: 0 1px 1px rgba(150, 70, 0, 0.25);
 }
 
-.tipo-chip--herramienta svg {
-  color: #c56a00;
-  background: rgba(255, 140, 0, 0.16);
-  padding: 0.4rem;
+.tipo-chip__texto > span {
+  opacity: var(--chip-p, 1);
+  transform: translateX(calc(var(--chip-mueve, 0px) - (1 - var(--chip-p, 1)) * 0.6rem));
+}
+
+.tipo-chip:not(.tipo-chip--lista) .tipo-chip__icono {
+  background: var(--chip-medio);
+}
+
+.tipo-chip:not(.tipo-chip--lista) .tipo-chip__texto {
+  background: linear-gradient(90deg, var(--chip-capsula), var(--chip-capsula-fin));
+}
+
+@keyframes tipo-chip-gira {
+  35% { transform: rotate(-16deg); }
+  70% { transform: rotate(6deg); }
+}
+
+@media (hover: hover) {
+  .tool-card:hover .tipo-chip__icono {
+    animation: tipo-chip-gira 0.7s ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tipo-chip__icono {
+    animation: none !important;
+  }
 }
 
 .tool-card.cloud {
