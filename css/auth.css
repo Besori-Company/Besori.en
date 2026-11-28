@@ -366,6 +366,13 @@
     margin-bottom: 1rem;
 }
 
+.mfa_icon_wrap.titulo_ico {
+    width: 5.6rem;
+    height: 5.6rem;
+    margin: 0 auto 1.2rem;
+    font-size: inherit;
+}
+
 .mfa_subtitulo {
     color: #666;
     font-size: 1.4rem;
@@ -402,7 +409,8 @@
 
 .paso_contenido h3 {
     font-size: 1.5rem;
-    margin-bottom: 0.6rem;
+    line-height: 3rem;
+    margin: 0 0 0.6rem;
 }
 
 .apps_lista {

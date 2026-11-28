@@ -128,7 +128,12 @@ document.body.insertAdjacentHTML('beforeend', `
     <div class="modal_overlay" id="modal-mfa-setup">
         <div class="modal_contenido modal_mfa">
             <div class="mfa_header">
-                <div class="mfa_icon_wrap">🔐</div>
+                <span class="mfa_icon_wrap titulo_ico naranja pegatina" aria-hidden="true">
+                    <svg viewBox="0 0 24 24">
+                        <g class="peg-fondo"><rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/></g>
+                        <rect x="4" y="11" width="16" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/><path d="M12 15v2"/>
+                    </svg>
+                </span>
                 <h2 class="auth_titulo">Set up two-step verification</h2>
                 <p class="mfa_subtitulo">This is required to protect your account. It only takes a minute.</p>
             </div>
