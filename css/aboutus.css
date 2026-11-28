@@ -46,7 +46,7 @@
     --r: 2.8rem;
     display: flex;
     flex-direction: column;
-    max-width: 900px;
+    max-width: 740px;
     width: 100%;
     margin-bottom: 2.5rem;
 }
