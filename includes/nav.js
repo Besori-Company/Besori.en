@@ -41,6 +41,7 @@
         </div>
     </nav>
 
+    <div class="nav_fondo" aria-hidden="true"></div>
     <div class="nav_panel" id="nav_panel">${enlacesHTML()}</div>
 `;
 
@@ -103,6 +104,7 @@
     const burbujas = (() => {
         const svg = raiz.querySelector('.nav_burbujas');
         const path = svg.querySelector('path');
+        const fondo = raiz.querySelector('.nav_fondo');
         const links = [...panel.querySelectorAll('a')];
         const sinMovimiento = window.matchMedia('(prefers-reduced-motion: reduce)');
         const T = 36 * Math.PI / 180, S = Math.sin(T), C = Math.cos(T);
@@ -115,9 +117,11 @@
 
         // Enlaces
         const ENTRA = 0.6, ESCALON = 0.05;
+        const FUNDIDO = 0.16;
         const DURA = 1 - ENTRA - ESCALON * (links.length - 1);
 
         let g = null, anim = false, objetivo = 0, pPrevio = 0;
+        let texto = 1, cerrando = false, tPrevio = 0;
         const prog = { x: 0, v: 0 };
         const flan = { x: 0, v: 0 };
         const retro = { x: 0, v: 0 };
@@ -127,9 +131,11 @@
             const b = burger.getBoundingClientRect();
             const r = panel.getBoundingClientRect();
             const radio = parseFloat(getComputedStyle(panel).borderTopLeftRadius) || 20;
+            // Coordenadas de viewport
             g = {
-                bx: b.left + b.width / 2 - o.left, by: b.top + b.height / 2 - o.top, rb: b.width / 2,
-                L: r.left - o.left, R: r.right - o.left, T: r.top - o.top, B: r.bottom - o.top, radio,
+                ox: o.left, oy: o.top,
+                bx: b.left + b.width / 2, by: b.top + b.height / 2, rb: b.width / 2,
+                L: r.left, R: r.right, T: r.top, B: r.bottom, radio,
                 gota: Math.min(22, r.height / 2),
             };
             pintar();
@@ -189,10 +195,13 @@
             const p = prog.x;
             const activo = p > 0.001 || Math.abs(retro.x) > 0.002;
             raiz.classList.toggle('nav_brotando', activo);
-            path.setAttribute('d', activo ? figura(p) : '');
+            const d = activo ? figura(p) : '';
+            path.setAttribute('d', d);
+            path.setAttribute('transform', `translate(${n(-g.ox)} ${n(-g.oy)})`);
+            fondo.style.clipPath = d ? `path('${d}')` : '';
             links.forEach((a, i) => {
                 const t = lim((p - ENTRA - i * ESCALON) / DURA);
-                a.style.opacity = n(suave(t));
+                a.style.opacity = n(suave(t) * suave(texto));
                 a.style.transform = `translateX(${n((1 - (t > 0 ? rebota(t) : 0)) * -12)}px)`;
             });
         }
@@ -203,23 +212,54 @@
             return Math.abs(obj - m.x) < 0.002 && Math.abs(m.v) < 0.002;
         }
 
-        function paso() {
-            const dt = 1 / 60;
-            const quietoP = muelle(prog, objetivo, objetivo ? 42 : 70, 1, dt);
+        function avanzar(dt) {
+            // Al cerrar, primero se va el texto y luego se recoge la forma
+            if (cerrando) {
+                texto = Math.max(0, texto - dt / FUNDIDO);
+                if (texto === 0) { cerrando = false; objetivo = 0; }
+            }
+            const quietoP = muelle(prog, objetivo, 42, 1, dt);
             if (quietoP) { prog.x = objetivo; prog.v = 0; }
             golpes(prog.x);
             const quietoF = muelle(flan, 0, 220, 0.45, dt);
             const quietoR = muelle(retro, 0, 320, 0.25, dt);
-            pintar();
-            if (quietoP && quietoF && quietoR) { flan.x = retro.x = 0; anim = false; pintar(); return; }
+            return quietoP && quietoF && quietoR && !cerrando;
+        }
+
+        function paso(ts) {
+            let dt = Math.min((ts - tPrevio) / 1000 || 1 / 60, 1 / 20);
+            tPrevio = ts;
+            let quieto = false;
+            while (dt > 0) {
+                const h = Math.min(dt, 1 / 120);
+                quieto = avanzar(h);
+                dt -= h;
+            }
+            colocarPanel();
+            if (quieto) { flan.x = retro.x = 0; anim = false; pintar(); return; }
             requestAnimationFrame(paso);
         }
 
         function ir(abrir) {
-            if (abrir) medir();
-            objetivo = abrir ? 1 : 0;
-            if (sinMovimiento.matches) { prog.x = pPrevio = objetivo; prog.v = 0; pintar(); return; }
-            if (!anim) { anim = true; requestAnimationFrame(paso); }
+            if (abrir) {
+                medir();
+                texto = 1;
+                cerrando = false;
+                objetivo = 1;
+            } else {
+                cerrando = prog.x > ENTRA && texto > 0;
+                if (!cerrando) objetivo = 0;
+            }
+            if (sinMovimiento.matches) {
+                cerrando = false;
+                objetivo = abrir ? 1 : 0;
+                texto = 1;
+                prog.x = pPrevio = objetivo; prog.v = 0; pintar(); return;
+            }
+            if (!anim) {
+                anim = true;
+                requestAnimationFrame(ts => { tPrevio = ts; paso(ts); });
+            }
         }
 
         return { medir, ir };

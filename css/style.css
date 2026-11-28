@@ -324,8 +324,22 @@ nav a {
     display: block;
 }
 
+.nav_fondo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99;
+    pointer-events: none;
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+
+.nav_brotando .nav_fondo {
+    display: block;
+}
+
 .nav_burbujas path {
-    fill: rgba(255, 255, 255, 0.96);
+    fill: rgba(255, 255, 255, 0.9);
     filter: drop-shadow(0 8px 30px rgba(0, 0, 0, 0.08)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.04));
 }
 
